@@ -11,17 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('emergency_contacts', function (Blueprint $table) {
             $table->id();
+            $table->boolean('is_first_responder');
             $table->string('name');
-            $table->date('date_of_birth');
             $table->string('phone_number')->unique();
-            $table->string('password');
-            $table->text('profile_photo_path');
-            // $table->string('email')->unique();
-            // $table->timestamp('email_verified_at')->nullable();
-            // $table->string('password');
-            // $table->rememberToken();
+            $table->unsignedBigInteger('patient_id');
             $table->timestamps();
         });
     }
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('emergency_contacts');
     }
 };
