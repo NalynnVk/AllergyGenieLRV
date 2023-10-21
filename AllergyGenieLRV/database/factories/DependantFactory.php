@@ -2,12 +2,14 @@
 
 namespace Database\Factories;
 
+use App\Models\Patient;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class CaregiverFactory extends Factory
+class DependantFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +19,8 @@ class CaregiverFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::inRandomOrder()->pluck('id')->first(),
+            'patient_id' => Patient::inRandomOrder()->pluck('id')->first(),
         ];
     }
 }

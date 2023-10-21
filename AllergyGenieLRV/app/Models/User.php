@@ -19,8 +19,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'date_of_birth',
+        'phone_number',
         'password',
+        'profile_photo_path',
     ];
 
     /**
@@ -42,4 +44,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function patient()
+    {
+        return $this->hasOne(Patient::class);
+    }
+
+    public function dependants()
+    {
+        return $this->hasMany(Dependant::class);
+    }
 }

@@ -17,7 +17,9 @@ class InsightFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'photo_path' => $this->faker->text(),
+            'title' => $this->faker->word(),
+            'description' => $this->faker->text(),
         ];
     }
 }

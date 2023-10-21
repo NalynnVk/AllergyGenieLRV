@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Insight extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'photo_path',
+        'title',
+        'description',
+    ];
 }

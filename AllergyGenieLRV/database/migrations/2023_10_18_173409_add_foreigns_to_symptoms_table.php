@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('symptoms', function (Blueprint $table) {
-            $table
-            ->foreign('tracking_id')
-            ->references('id')
-            ->on('trackings')
-            ->onUpdate('CASCADE')
-            ->onDelete('CASCADE');
+            // $table
+            // ->foreign('tracking_id')
+            // ->references('id')
+            // ->on('trackings')
+            // ->onUpdate('CASCADE')
+            // ->onDelete('CASCADE');
         });
     }
 

@@ -19,12 +19,12 @@ return new class extends Migration
             ->onUpdate('CASCADE')
             ->onDelete('CASCADE');
 
-            $table
-            ->foreign('symptom_id')
-            ->references('id')
-            ->on('symptoms')
-            ->onUpdate('CASCADE')
-            ->onDelete('CASCADE');
+            // $table
+            // ->foreign('symptom_id')
+            // ->references('id')
+            // ->on('symptoms')
+            // ->onUpdate('CASCADE')
+            // ->onDelete('CASCADE');
         });
     }
 

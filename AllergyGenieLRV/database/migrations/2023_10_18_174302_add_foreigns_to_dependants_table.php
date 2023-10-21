@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('caregivers', function (Blueprint $table) {
+        Schema::table('dependants', function (Blueprint $table) {
             $table
             ->foreign('user_id')
             ->references('id')
@@ -33,7 +33,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('caregivers', function (Blueprint $table) {
+        Schema::table('dependants', function (Blueprint $table) {
             //
         });
     }

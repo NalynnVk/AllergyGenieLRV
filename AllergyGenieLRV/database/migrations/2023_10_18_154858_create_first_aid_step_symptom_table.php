@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('first_aid_step_symptom', function (Blueprint $table) {
-            $table->unsignedBigInteger('symptom_id');
-            $table->unsignedBigInteger('first_aid_step_id');
+            $table->foreignId('symptom_id');
+            $table->foreignId('first_aid_step_id');
         });
     }
 

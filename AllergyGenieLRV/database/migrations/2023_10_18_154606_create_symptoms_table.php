@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('symptoms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
-            $table->tinyInteger('severity');
-            $table->unsignedBigInteger('tracking_id');
+            // $table->text('description');
+            // $table->integer('severity');
+            // $table->unsignedBigInteger('tracking_id');
             $table->timestamps();
         });
     }

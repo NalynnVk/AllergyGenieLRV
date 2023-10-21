@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('allergen_symptom', function (Blueprint $table) {
-            $table->unsignedBigInteger('allergen_id');
-            $table->unsignedBigInteger('symptom_id');
+            $table->foreignId('allergen_id');
+            $table->foreignId('symptom_id');
         });
     }
 

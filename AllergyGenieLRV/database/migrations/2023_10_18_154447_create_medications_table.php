@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('medications', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->smallInteger('dosage');
-            $table->string('frequency');
-            $table->dateTime('time');
-            $table->boolean('is_enabled');
-            $table->unsignedBigInteger('patient_id');
+            // $table->smallInteger('dosage');
+            // $table->string('frequency'); //hmm maybe enum
+            // $table->dateTime('time');
+            // $table->boolean('is_enabled')->default(false);
+            // $table->unsignedBigInteger('patient_id');
             $table->timestamps();
         });
     }
