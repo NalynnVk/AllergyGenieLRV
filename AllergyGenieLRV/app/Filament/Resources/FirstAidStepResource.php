@@ -26,7 +26,7 @@ class FirstAidStepResource extends Resource
         return $form
             ->schema([
                 TextInput::make ('step')
-                ->placeholder('ex: If symptoms persist or worsen, consult a healthcare professional.'),
+                ->placeholder('e.g., If symptoms persist or worsen, consult a healthcare professional.'),
             ]);
     }
 
@@ -35,7 +35,7 @@ class FirstAidStepResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id'),
-                TextColumn::make('step'),
+                TextColumn::make('step')->limit(25),
             ])
             ->filters([
                 //

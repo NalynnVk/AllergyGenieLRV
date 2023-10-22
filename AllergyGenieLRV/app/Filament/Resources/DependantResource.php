@@ -34,16 +34,16 @@ class DependantResource extends Resource
         return $form
             ->schema([
                 TextInput::make('user.name')
-                    ->placeholder('ex: Wan Aida'),
+                    ->placeholder('e.g., Wan Aida'),
 
                 DatePicker::make('user.date_of_birth')
-                    ->placeholder('ex: 20/20/2020'),
+                    ->placeholder('e.g., 20/20/2020'),
 
                 TextInput::make('user.phone_number')
                     ->label('Phone Number')
                     ->rules(['max:255', 'string'])
                     ->required()
-                    ->placeholder('ex: +6012-345-6789')
+                    ->placeholder('e.g., +6012-345-6789')
                     ->columnSpan([
                         'default' => 2,
                         'md' => 1,
@@ -71,7 +71,7 @@ class DependantResource extends Resource
                     ->label('Patient')
                     ->options(Patient::with('user')->get()->pluck('user.name', 'id'))
                     ->searchable()
-                    ->placeholder('ex: Ali bin Ahmad')
+                    ->placeholder('e.g., Ali bin Ahmad')
                     ->columnSpan([
                         'default' => 2,
                         'md' => 1,
@@ -98,9 +98,9 @@ class DependantResource extends Resource
                 TextColumn::make('user.name')
                     ->label('Dependant'),
                 TextColumn::make('user.date_of_birth')
-                    ->label('2001-03-15'),
+                    ->label('Date Of Birth'),
                 TextColumn::make('user.phone_number')
-                    ->label('2001-03-15'),
+                    ->label('Phone Number'),
                 TextColumn::make('patient.user.name')
                     ->label('Parent / Guardian'),
                 BadgeColumn::make('relationship_label')

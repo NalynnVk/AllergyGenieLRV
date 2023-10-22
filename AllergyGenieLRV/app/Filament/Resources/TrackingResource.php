@@ -40,23 +40,23 @@ class TrackingResource extends Resource
                     ])
                     ->required(),
 
-                // Select::make('symptom_id')
-                //     ->label('Symptom')
-                //     ->options(Symptom::with('symptom')->get()->pluck('symptom.name', 'id'))
-                //     ->searchable()
-                //     ->placeholder('ex: Skin-related Symptoms')
-                //     ->columnSpan([
-                //         'default' => 2,
-                //         'md' => 1,
-                //         'lg' => 1,
-                //     ])
-                //     ->required(),
+                Select::make('symptom_id')
+                    ->label('Symptom')
+                    ->options(Symptom::pluck('name', 'id'))
+                    ->searchable()
+                    ->placeholder('ex: Skin-related Symptoms')
+                    ->columnSpan([
+                        'default' => 2,
+                        'md' => 1,
+                        'lg' => 1,
+                    ])
+                    ->required(),
 
                 TextInput::make('severity')
-                    ->placeholder('ex: 2'),
+                    ->placeholder('e.g., 2'),
 
                 TextInput::make('notes')
-                    ->placeholder('ex: Rashes under eye'),
+                    ->placeholder('e.g., Rashes under eye'),
             ]);
     }
 
@@ -66,9 +66,9 @@ class TrackingResource extends Resource
             ->columns([
                 TextColumn::make('id'),
                 TextColumn::make('patient.user.name'),
-                // TextColumn::make('patient.symptom.name'),
+                // TextColumn::make('symptom.name'),
                 TextColumn::make('severity'),
-                TextColumn::make('notes'),
+                TextColumn::make('notes')->limit(25),
             ])
             ->filters([
                 //

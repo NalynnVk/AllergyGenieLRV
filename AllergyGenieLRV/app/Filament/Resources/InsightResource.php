@@ -45,10 +45,10 @@ class InsightResource extends Resource
                     ]),
 
                 TextInput::make ('title')
-                ->placeholder('ex: Allergic Management Treatment'),
+                ->placeholder('e.g., Allergic Management Treatment'),
 
                 TextInput::make('description')
-                ->placeholder('ex: Allergic management treatment involves a combination of approaches aimed at reducing exposure to allergens, managing symptoms, and modifying the immune systems response to allergens.'),
+                ->placeholder('e.g., Allergic management treatment involves a combination of approaches aimed at reducing exposure to allergens, managing symptoms, and modifying the immune systems response to allergens.'),
             ]);
     }
 
@@ -58,7 +58,7 @@ class InsightResource extends Resource
             ->columns([
                 TextColumn::make('id'),
                 TextColumn::make('title'),
-                TextColumn::make('description'),
+                TextColumn::make('description')->limit(25),
             ])
             ->filters([
                 //

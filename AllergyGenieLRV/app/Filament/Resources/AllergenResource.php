@@ -26,7 +26,7 @@ class AllergenResource extends Resource
         return $form
             ->schema([
                 TextInput::make ('name')
-                ->placeholder('ex: Dairy Product'),
+                ->placeholder('e.g., Dairy Product'),
 
             ]);
     }

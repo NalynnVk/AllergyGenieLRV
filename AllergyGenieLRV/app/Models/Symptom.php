@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\SymptomSeverityEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,9 +12,13 @@ class Symptom extends Model
 
     protected $fillable = [
         'name',
-        // 'description',
-        // 'severity',
+        'description',
+        'severity',
         // 'tracking_id',
+    ];
+
+    protected $casts = [
+        'severity' => SymptomSeverityEnum::class,
     ];
 
     public function tracking()
@@ -29,5 +34,9 @@ class Symptom extends Model
     public function firstAidSteps()
     {
         return $this->belongsToMany(FirstAidStep::class);
+    }
+
+    public function getSeverityLabelAttribute(){
+        return SymptomSeverityEnum::from($this->attributes['severity'])->label;
     }
 }

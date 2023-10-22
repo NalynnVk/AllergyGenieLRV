@@ -29,16 +29,16 @@ class UserResource extends Resource
         return $form
             ->schema([
                 TextInput::make ('name')
-                ->placeholder('ex: Davikah Sharma'),
+                ->placeholder('e.g., Davikah Sharma'),
 
                 DatePicker::make('date_of_birth')
-                ->placeholder('ex: 20/20/2020'),
+                ->placeholder('e.g., 20/20/2020'),
 
                 TextInput::make('phone_number')
                 ->label('Phone Number')
                 ->rules(['max:255', 'string'])
                 ->required()
-                ->placeholder('ex: +6012-345-6789')
+                ->placeholder('e.g., +6012-345-6789')
                 ->columnSpan([
                     'default' => 2,
                     'md' => 1,
@@ -46,7 +46,7 @@ class UserResource extends Resource
                 ]),
 
                 TextInput::make ('password')
-                ->placeholder('ex: Davikah@2020'),
+                ->placeholder('e.g., Davikah@2020'),
 
                 FileUpload::make('profile_photo_path')
                     ->visibility('private')

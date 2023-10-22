@@ -29,13 +29,13 @@ class EmergencyContactResource extends Resource
             ->schema([
                 // table->boolean('is_first_responder')->default(false);
                 TextInput::make('name')
-                    ->placeholder('ex: Mark Lee'),
+                    ->placeholder('e.g., Mark Lee'),
 
                 TextInput::make('phone_number')
                     ->label('Phone Number')
                     ->rules(['max:255', 'string'])
                     ->required()
-                    ->placeholder('ex: +6012-345-6789')
+                    ->placeholder('e.g., +6012-345-6789')
                     ->columnSpan([
                         'default' => 2,
                         'md' => 1,
@@ -46,7 +46,7 @@ class EmergencyContactResource extends Resource
                     ->label('Patient')
                     ->options(Patient::with('user')->get()->pluck('user.name', 'id'))
                     ->searchable()
-                    ->placeholder('ex: Syed Lydieanna')
+                    ->placeholder('e.g., Syed Lydieanna')
                     ->columnSpan([
                         'default' => 2,
                         'md' => 1,

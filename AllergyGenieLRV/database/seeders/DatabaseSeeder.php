@@ -36,9 +36,9 @@ class DatabaseSeeder extends Seeder
         $this->call(DependantSeeder::class);
         $this->call(AllergenSeeder::class);
         $this->call(MedicationSeeder::class);
+        $this->call(SymptomSeeder::class);
         $this->call(TrackingSeeder::class);
         $this->call(EmergencyContactSeeder::class);
-        $this->call(SymptomSeeder::class);
         $this->call(FirstAidStepSeeder::class);
         $this->call(InsightSeeder::class);
     }

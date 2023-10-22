@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\SymptomSeverityEnum;
 use App\Models\Symptom;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,27 +15,65 @@ class SymptomSeeder extends Seeder
     public function run(): void
     {
         // Symptom::factory(3)->create();
-        Symptom::create(['name' => 'Skin-related Symptoms']);
-        Symptom::create(['name' => 'Nasal Symptoms']);
-        Symptom::create(['name' => 'Ocular Symptoms']);
-        Symptom::create(['name' => 'Gastrointestinal Symptoms']);
-        Symptom::create(['name' => 'Respiratory Symptoms']);
-        Symptom::create(['name' => 'Oral Symptoms']);
-        Symptom::create(['name' => 'Cardiovascular Symptoms']);
-        Symptom::create(['name' => 'Systemic Symptoms']);
-        Symptom::create(['name' => 'Anaphylaxis Symptoms']);
-        Symptom::create(['name' => 'Neurological symptoms']);
-        Symptom::create(['name' => 'Musculoskeletal symptoms']);
-        Symptom::create(['name' => 'Psychological symptoms']);
+        Symptom::create([
+            'name' => 'Skin-related Symptoms',
+            'description' => 'test',
+            'severity' => SymptomSeverityEnum::Mild(),
+        ]);
+        Symptom::create([
+            'name' => 'Nasal Symptoms',
+            'description' => 'test',
+            'severity' => SymptomSeverityEnum::Mild(),
+        ]);
+        Symptom::create([
+            'name' => 'Ocular Symptoms',
+            'description' => 'test',
+            'severity' => SymptomSeverityEnum::Mild(),
+        ]);
+        Symptom::create([
+            'name' => 'Gastrointestinal Symptoms',
+            'description' => 'test',
+            'severity' => SymptomSeverityEnum::Mild(),
+        ]);
+        Symptom::create([
+            'name' => 'Psychological symptoms',
+            'description' => 'test',
+            'severity' => SymptomSeverityEnum::Mild(),
+        ]);
+        Symptom::create([
+            'name' => 'Respiratory Symptoms',
+            'description' => 'test',
+            'severity' => SymptomSeverityEnum::Severe(),
+        ]);
+        Symptom::create([
+            'name' => 'Musculoskeletal symptoms',
+            'description' => 'test',
+            'severity' => SymptomSeverityEnum::Severe(),
+        ]);
+        Symptom::create([
+            'name' => 'Oral Symptoms',
+            'description' => 'test',
+            'severity' => SymptomSeverityEnum::Severe(),
+        ]);
+        Symptom::create([
+            'name' => 'Cardiovascular Symptoms',
+            'description' => 'test',
+            'severity' => SymptomSeverityEnum::Severe(),
+        ]);
+        Symptom::create([
+            'name' => 'Systemic Symptoms',
+            'description' => 'test',
+            'severity' => SymptomSeverityEnum::Severe(),
+        ]);
+        Symptom::create([
+            'name' => 'Anaphylaxis Symptoms',
+            'description' => 'test',
+            'severity' => SymptomSeverityEnum::Severe(),
+        ]);
+        Symptom::create([
+            'name' => 'Neurological symptoms',
+            'description' => 'test',
+            'severity' => SymptomSeverityEnum::Severe(),
+        ]);
     }
 }
-
-
-
-
-
-
-
-
-
-

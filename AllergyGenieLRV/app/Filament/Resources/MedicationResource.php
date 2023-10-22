@@ -28,7 +28,7 @@ class MedicationResource extends Resource
         return $form
             ->schema([
                 TextInput::make ('name')
-                ->placeholder('ex: Panadol'),
+                ->placeholder('e.g., Panadol'),
 
                 // TextInput::make('dosage')
                 // ->placeholder('ex: 1'),

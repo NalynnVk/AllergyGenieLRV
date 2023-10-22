@@ -20,7 +20,7 @@ class TrackingFactory extends Factory
     {
         return [
             'patient_id' => Patient::inRandomOrder()->pluck('id')->first(),
-            // 'symptom_id' => Symptom::inRandomOrder()->pluck('id')->first(),
+            'symptom_id' => Symptom::inRandomOrder()->pluck('id')->first(),
             'notes' => $this->faker->text(),
             'item_ingested' => $this->faker->text(),
             'severity' => $this->faker->randomDigit(),

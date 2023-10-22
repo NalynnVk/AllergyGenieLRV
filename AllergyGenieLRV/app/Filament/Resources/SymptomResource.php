@@ -2,10 +2,13 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\SymptomSeverityEnum;
 use App\Filament\Resources\SymptomResource\Pages;
 use App\Filament\Resources\SymptomResource\RelationManagers;
+use App\Helpers\EnumMap;
 use App\Models\Symptom;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -14,6 +17,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\BadgeColumn;
+use Spatie\Enum\Laravel\Rules\EnumRule;
+
 
 class SymptomResource extends Resource
 {
@@ -26,7 +32,16 @@ class SymptomResource extends Resource
         return $form
             ->schema([
                 TextInput::make ('name')
-                ->placeholder('ex: Neurological symptoms'),
+                ->placeholder('e.g., Neurological symptoms'),
+                Select::make('severity_label')
+                ->options(EnumMap::getSymptomSeverity())
+                ->rules([
+                    new EnumRule(SymptomSeverityEnum::class)
+                ])
+                ->disablePlaceholderSelection()
+                ->reactive(),
+                TextInput::make('description')
+                ->placeholder('e.g., '),
             ]);
     }
 
@@ -36,6 +51,13 @@ class SymptomResource extends Resource
             ->columns([
                 TextColumn::make('id'),
                 TextColumn::make('name'),
+                BadgeColumn::make('severity_label')
+                ->colors([
+                    'primary' => SymptomSeverityEnum::Mild()->label,
+                    'primary' => SymptomSeverityEnum::Severe()->label,
+                ]),
+                TextColumn::make('description')->limit(25)
+
             ])
             ->filters([
                 //

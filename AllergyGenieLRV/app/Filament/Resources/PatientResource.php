@@ -26,7 +26,7 @@ class PatientResource extends Resource
         return $form
             ->schema([
                 TextInput::make('user.name')
-                ->placeholder('ex: Wan Aida'),
+                ->placeholder('e.g., Wan Aida'),
             ]);
     }
 
