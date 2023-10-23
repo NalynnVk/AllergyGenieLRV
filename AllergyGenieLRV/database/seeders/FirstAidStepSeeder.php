@@ -13,6 +13,6 @@ class FirstAidStepSeeder extends Seeder
      */
     public function run(): void
     {
-        FirstAidStep::factory(3)->create();
+        FirstAidStep::factory(10)->create();
     }
 }

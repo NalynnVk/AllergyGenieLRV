@@ -13,6 +13,6 @@ class EmergencyContactSeeder extends Seeder
      */
     public function run(): void
     {
-        EmergencyContact::factory(3)->create();
+        EmergencyContact::factory(10)->create();
     }
 }

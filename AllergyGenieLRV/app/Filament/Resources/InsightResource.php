@@ -37,7 +37,7 @@ class InsightResource extends Resource
                     ->imageResizeTargetHeight('1080')
                     // 10 mb
                     ->maxSize(10000)
-                    ->disk('insight')
+                    // ->disk('insight')
                     ->columnSpan([
                         'default' => 2,
                         'md' => 1,

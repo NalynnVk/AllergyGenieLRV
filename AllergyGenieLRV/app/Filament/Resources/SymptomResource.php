@@ -31,17 +31,19 @@ class SymptomResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make ('name')
-                ->placeholder('e.g., Neurological symptoms'),
-                Select::make('severity_label')
-                ->options(EnumMap::getSymptomSeverity())
-                ->rules([
-                    new EnumRule(SymptomSeverityEnum::class)
-                ])
-                ->disablePlaceholderSelection()
-                ->reactive(),
+                TextInput::make('name')
+                    ->placeholder('e.g., Neurological symptoms'),
+
+                Select::make('severity')
+                    ->options(EnumMap::getSymptomSeverity())
+                    ->rules([
+                        new EnumRule(SymptomSeverityEnum::class)
+                    ])
+                    ->disablePlaceholderSelection()
+                    ->reactive(),
+
                 TextInput::make('description')
-                ->placeholder('e.g., '),
+                    ->placeholder('e.g., '),
             ]);
     }
 
@@ -52,10 +54,10 @@ class SymptomResource extends Resource
                 TextColumn::make('id'),
                 TextColumn::make('name'),
                 BadgeColumn::make('severity_label')
-                ->colors([
-                    'primary' => SymptomSeverityEnum::Mild()->label,
-                    'primary' => SymptomSeverityEnum::Severe()->label,
-                ]),
+                    ->colors([
+                        'primary' => SymptomSeverityEnum::Mild()->label,
+                        'primary' => SymptomSeverityEnum::Severe()->label,
+                    ]),
                 TextColumn::make('description')->limit(25)
 
             ])

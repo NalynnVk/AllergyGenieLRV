@@ -13,6 +13,6 @@ class InsightSeeder extends Seeder
      */
     public function run(): void
     {
-        Insight::factory(3)->create();
+        Insight::factory(10)->create();
     }
 }

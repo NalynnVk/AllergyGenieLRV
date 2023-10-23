@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\SymptomSeverityEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +15,8 @@ return new class extends Migration
         Schema::create('symptoms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('severity');
+            // $table->ENUM('severity');
+            $table->enum('severity', SymptomSeverityEnum::toValues())->default(SymptomSeverityEnum::Mild());
             $table->text('description');
             // $table->unsignedBigInteger('tracking_id');
             $table->timestamps();

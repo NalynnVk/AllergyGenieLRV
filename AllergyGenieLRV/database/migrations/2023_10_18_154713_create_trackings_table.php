@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('trackings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('patient_id');
+            $table->unsignedBigInteger('allergen_id');
+            // $table->string('item_ingested');
             $table->unsignedBigInteger('symptom_id');
-            $table->string('item_ingested'); 
             $table->integer('severity');
             $table->text('notes');
             $table->timestamps();

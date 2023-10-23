@@ -12,7 +12,8 @@ class Tracking extends Model
     protected $fillable = [
         'patient_id',
         'symptom_id',
-        'item_ingested',
+        'allergen_id',
+        // 'item_ingested',
         'severity',
         'notes',
     ];
@@ -24,6 +25,11 @@ class Tracking extends Model
 
     public function symptom()
     {
-        return $this->hasOne(Symptom::class);
+        return $this->belongsTo(Symptom::class);
+    }
+
+    public function allergen()
+    {
+        return $this->belongsTo(Allergen::class);
     }
 }

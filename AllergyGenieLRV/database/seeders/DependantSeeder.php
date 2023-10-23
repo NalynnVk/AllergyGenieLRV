@@ -14,6 +14,6 @@ class DependantSeeder extends Seeder
      */
     public function run(): void
     {
-        Dependant::factory(3)->create();
+        Dependant::factory(10)->create();
     }
 }

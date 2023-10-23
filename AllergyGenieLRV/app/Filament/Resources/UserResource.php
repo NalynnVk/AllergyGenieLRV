@@ -58,7 +58,7 @@ class UserResource extends Resource
                     ->imageResizeTargetHeight('1080')
                     // 10 mb
                     ->maxSize(10000)
-                    ->disk('profile')
+                    // ->disk('profile')
                     ->columnSpan([
                         'default' => 2,
                         'md' => 1,

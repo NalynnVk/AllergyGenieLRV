@@ -13,6 +13,6 @@ class PatientSeeder extends Seeder
      */
     public function run(): void
     {
-        Patient::factory(3)->create();
+        Patient::factory(10)->create();
     }
 }

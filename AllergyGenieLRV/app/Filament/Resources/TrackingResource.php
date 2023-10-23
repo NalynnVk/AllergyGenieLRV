@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\TrackingResource\Pages;
 use App\Filament\Resources\TrackingResource\RelationManagers;
+use App\Models\Allergen;
 use App\Models\Patient;
 use App\Models\Symptom;
 use App\Models\Tracking;
@@ -52,6 +53,18 @@ class TrackingResource extends Resource
                     ])
                     ->required(),
 
+                Select::make('allergen_id')
+                    ->label('Allergen')
+                    ->options(Allergen::pluck('name', 'id'))
+                    ->searchable()
+                    ->placeholder('ex: Dairy Products')
+                    ->columnSpan([
+                        'default' => 2,
+                        'md' => 1,
+                        'lg' => 1,
+                    ])
+                    ->required(),
+
                 TextInput::make('severity')
                     ->placeholder('e.g., 2'),
 
@@ -66,7 +79,9 @@ class TrackingResource extends Resource
             ->columns([
                 TextColumn::make('id'),
                 TextColumn::make('patient.user.name'),
-                // TextColumn::make('symptom.name'),
+                TextColumn::make('symptom.name'),
+                TextColumn::make('allergen.name'),
+                // TextColumn::make('item_ingested'),
                 TextColumn::make('severity'),
                 TextColumn::make('notes')->limit(25),
             ])
