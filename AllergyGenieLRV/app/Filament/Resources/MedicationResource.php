@@ -28,7 +28,9 @@ class MedicationResource extends Resource
         return $form
             ->schema([
                 TextInput::make ('name')
-                ->placeholder('e.g., Panadol'),
+                ->placeholder('e.g., Panadol')
+                ->label('Medication Name'),
+
 
                 // TextInput::make('dosage')
                 // ->placeholder('ex: 1'),
@@ -56,7 +58,8 @@ class MedicationResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id'),
-                TextColumn::make('name'),
+                TextColumn::make('name')
+                ->label('Medication Name'),
                 // TextColumn::make('dosage'),
                 // TextColumn::make('frequency'),
                 // TextColumn::make('time'),

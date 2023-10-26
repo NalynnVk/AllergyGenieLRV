@@ -6,6 +6,7 @@ use App\Filament\Resources\FirstAidStepResource\Pages;
 use App\Filament\Resources\FirstAidStepResource\RelationManagers;
 use App\Models\FirstAidStep;
 use Filament\Forms;
+use Filament\Forms\Components\Textarea;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -25,7 +26,7 @@ class FirstAidStepResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make ('step')
+                Textarea::make ('step')
                 ->placeholder('e.g., If symptoms persist or worsen, consult a healthcare professional.'),
             ]);
     }
@@ -35,7 +36,7 @@ class FirstAidStepResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id'),
-                TextColumn::make('step')->limit(25),
+                TextColumn::make('step')->limit(108),
             ])
             ->filters([
                 //

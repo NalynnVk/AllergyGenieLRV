@@ -15,7 +15,6 @@ return new class extends Migration
         Schema::create('symptoms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            // $table->ENUM('severity');
             $table->enum('severity', SymptomSeverityEnum::toValues())->default(SymptomSeverityEnum::Mild());
             $table->text('description');
             // $table->unsignedBigInteger('tracking_id');

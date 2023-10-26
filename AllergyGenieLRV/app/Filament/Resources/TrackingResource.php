@@ -10,6 +10,7 @@ use App\Models\Symptom;
 use App\Models\Tracking;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -30,7 +31,7 @@ class TrackingResource extends Resource
         return $form
             ->schema([
                 Select::make('patient_id')
-                    ->label('Patient')
+                    ->label('User')
                     ->options(Patient::with('user')->get()->pluck('user.name', 'id'))
                     ->searchable()
                     ->placeholder('ex: Ali bin Ahmad')
@@ -42,7 +43,7 @@ class TrackingResource extends Resource
                     ->required(),
 
                 Select::make('symptom_id')
-                    ->label('Symptom')
+                    ->label('Symptom Category')
                     ->options(Symptom::pluck('name', 'id'))
                     ->searchable()
                     ->placeholder('ex: Skin-related Symptoms')
@@ -54,7 +55,7 @@ class TrackingResource extends Resource
                     ->required(),
 
                 Select::make('allergen_id')
-                    ->label('Allergen')
+                    ->label('Food / Medication')
                     ->options(Allergen::pluck('name', 'id'))
                     ->searchable()
                     ->placeholder('ex: Dairy Products')
@@ -68,8 +69,9 @@ class TrackingResource extends Resource
                 TextInput::make('severity')
                     ->placeholder('e.g., 2'),
 
-                TextInput::make('notes')
-                    ->placeholder('e.g., Rashes under eye'),
+                Textarea::make('notes')
+                    ->placeholder('e.g., Rashes under eye')
+                    ->label('Additional Notes'),
             ]);
     }
 
@@ -79,11 +81,13 @@ class TrackingResource extends Resource
             ->columns([
                 TextColumn::make('id'),
                 TextColumn::make('patient.user.name'),
-                TextColumn::make('symptom.name'),
-                TextColumn::make('allergen.name'),
-                // TextColumn::make('item_ingested'),
+                TextColumn::make('symptom.name')
+                    ->label('Symptom Category'),
+                TextColumn::make('allergen.name')
+                    ->label('Food / Medication'),
                 TextColumn::make('severity'),
-                TextColumn::make('notes')->limit(25),
+                TextColumn::make('notes')->limit(25)
+                    ->label('Additional Notes'),
             ])
             ->filters([
                 //
