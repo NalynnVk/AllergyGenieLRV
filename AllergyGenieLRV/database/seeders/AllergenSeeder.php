@@ -22,6 +22,11 @@ class AllergenSeeder extends Seeder
         Allergen::create(['name' => 'Seeds']);
         Allergen::create(['name' => 'Fish']);
         Allergen::create(['name' => 'Shellfish']);
+        Allergen::create(['name' => 'Chicken meat']);
+        Allergen::create(['name' => 'Beef meat']);
+        Allergen::create(['name' => 'Goat meat/Mutton']);
+        Allergen::create(['name' => 'Duck meat']);
+        Allergen::create(['name' => 'Pork meat']);
         Allergen::create(['name' => 'Sulfites']);
         Allergen::create(['name' => 'Chickpeas']);
         Allergen::create(['name' => 'Lentils']);

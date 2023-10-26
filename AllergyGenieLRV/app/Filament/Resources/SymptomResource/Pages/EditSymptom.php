@@ -10,6 +10,11 @@ class EditSymptom extends EditRecord
 {
     protected static string $resource = SymptomResource::class;
 
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getURL('index');
+    }
+
     protected function getActions(): array
     {
         return [

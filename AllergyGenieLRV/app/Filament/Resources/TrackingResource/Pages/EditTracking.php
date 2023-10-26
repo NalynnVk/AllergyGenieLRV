@@ -10,6 +10,11 @@ class EditTracking extends EditRecord
 {
     protected static string $resource = TrackingResource::class;
 
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getURL('index');
+    }
+
     protected function getActions(): array
     {
         return [

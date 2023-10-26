@@ -10,6 +10,11 @@ class EditInsight extends EditRecord
 {
     protected static string $resource = InsightResource::class;
 
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getURL('index');
+    }
+
     protected function getActions(): array
     {
         return [
