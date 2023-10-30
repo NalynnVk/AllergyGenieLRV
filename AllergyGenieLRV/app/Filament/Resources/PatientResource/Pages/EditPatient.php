@@ -16,14 +16,13 @@ class EditPatient extends EditRecord
         return $this->getResource()::getURL('index');
     }
 
-    // protected function beforeFill(): void
-    // {
-    //     // Retrieve the existing dependant's data based on the ID
-    //     $patient = Patient::find($this->recordId);
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        $patient = Patient::find($data['id']);
+        $data['user']['name'] = $patient->user->name ?? null;
 
-    //     // Pre-fill the form fields with the existing data
-    //     $this->record = $patient;
-    // }
+        return $data;
+    }
 
     protected function getActions(): array
     {

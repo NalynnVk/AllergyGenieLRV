@@ -13,10 +13,29 @@ class EditDependant extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        $data['user_id'] = auth()->id();
+        $dependant = Dependant::find($data['id']);
+        $data['user']['name'] = $dependant->user->name ?? null;
+        $data['user']['date_of_birth'] = $dependant->user->date_of_birth ?? null;
+        $data['user']['phone_number'] = $dependant->user->phone_number ?? null;
+        $data['user']['profile_photo_path'] = $dependant->user->profile_photo_path ?? null;
 
         return $data;
     }
+
+    // protected function mutateFormDataBeforeFill(array $data): array
+    // {
+    //     if ($data != null) {
+    //         $dependant = Dependant::find($data['id']);
+
+    //         //Patients
+    //         $patient_array = [];
+    //         foreach ($dependant->patients ?? [] as $patient) {
+    //             $patient_array[] = $patient->id;
+    //         }
+    //         $data['patient'] = $patient_array ?? null;
+    //     }
+    //     return $data;
+    // }
 
     protected function getRedirectUrl(): string
     {
