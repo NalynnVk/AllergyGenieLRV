@@ -31,7 +31,7 @@ class MedicationReminder extends Model
 
     public function medication()
     {
-        return $this->hasOne(Medication::class);
+        return $this->belongsTo(Medication::class);
     }
 
     public function getDosageLabelAttribute(){

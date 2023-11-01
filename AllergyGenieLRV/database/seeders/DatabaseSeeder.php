@@ -41,5 +41,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EmergencyContactSeeder::class);
         $this->call(FirstAidStepSeeder::class);
         $this->call(InsightSeeder::class);
+        $this->call(MedicationReminderSeeder::class);
+
     }
 }

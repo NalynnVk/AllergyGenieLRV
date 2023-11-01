@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Enums\DosageEnum;
+use App\Enums\ReminderRepetitionEnum;
 use App\Filament\Resources\MedicationReminderResource\Pages;
 use App\Filament\Resources\MedicationReminderResource\RelationManagers;
 use App\Helpers\EnumMap;
@@ -78,23 +79,26 @@ class MedicationReminderResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id'),
-                TextColumn::make('user.name'),
+                TextColumn::make('user.name')
+                    ->label('User'),
                 TextColumn::make('medication.name')
                     ->label('Medication Name'),
-                // BadgeColumn::make('reminder_label')
-                //     ->colors([
-                //         'primary' => DosageEnum::Once()->label,
-                //         'primary' => DosageEnum::Daily()->label,
-                //         'primary' => DosageEnum::Weekly()->label,
-                //     ]),
+                BadgeColumn::make('dosage_label')
+                    ->colors([
+                        'primary' => DosageEnum::Half()->label,
+                        'primary' => DosageEnum::One()->label,
+                        'primary' => DosageEnum::Two()->label,
+                        'primary' => DosageEnum::More()->label,
+                    ])
+                    ->label('Dosage'),
                 TextColumn::make('time_reminder'),
-                // BadgeColumn::make('dosage_label')
-                //     ->colors([
-                //         'primary' => DosageEnum::Half()->label,
-                //         'primary' => DosageEnum::One()->label,
-                //         'primary' => DosageEnum::Two()->label,
-                //         'primary' => DosageEnum::More()->label,
-                //     ])
+                BadgeColumn::make('repititon_label')
+                ->colors([
+                    'primary' => ReminderRepetitionEnum::Once()->label,
+                    'primary' => ReminderRepetitionEnum::Daily()->label,
+                    'primary' => ReminderRepetitionEnum::Weekly()->label,
+                ])
+                ->label('Repitition'),
             ])
             ->filters([
                 //
