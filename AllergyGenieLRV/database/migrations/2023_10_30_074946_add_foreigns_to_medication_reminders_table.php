@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::table('medication_reminders', function (Blueprint $table) {
             $table
-            ->foreign('user_id')
+            ->foreign('patient_id')
             ->references('id')
-            ->on('users')
+            ->on('patients')
             ->onUpdate('CASCADE')
             ->onDelete('CASCADE');
 

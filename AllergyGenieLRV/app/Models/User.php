@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\RegistrationStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -23,6 +25,7 @@ class User extends Authenticatable
         'phone_number',
         'password',
         'profile_photo_path',
+        'registration_status',
     ];
 
     /**
@@ -43,6 +46,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'registration_status' => RegistrationStatusEnum::class,
     ];
 
     public function patient()
@@ -53,5 +57,9 @@ class User extends Authenticatable
     public function dependants()
     {
         return $this->hasMany(Dependant::class);
+    }
+
+    public function getRegistrationStatusLabelAttribute(){
+        return RegistrationStatusEnum::from($this->attributes['registration_status'])->label;
     }
 }

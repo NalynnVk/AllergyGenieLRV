@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Enums\RegistrationStatusEnum;
 use App\Models\Allergen;
 use App\Models\Dependant;
 use App\Models\EmergencyContact;
@@ -27,8 +28,10 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'Administrator 1',
             'email' => 'admin@admin.com',
-            'phone_number' => '+018-189 6587',
+            'email_verified_at' => now(),
+            'phone_number' => '018-189 6587',
             'password' => 'Admin1',
+            'registration_status' => RegistrationStatusEnum::Approved(),
         ]);
 
         $this->call(UserSeeder::class);

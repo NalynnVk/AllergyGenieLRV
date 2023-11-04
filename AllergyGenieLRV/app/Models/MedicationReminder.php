@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 class MedicationReminder extends Model
 {
     use HasFactory;
-
+    //TODO: tukar user id kepada patient id
     protected $fillable = [
-        'user_id',
+        'patient_id',
         'medication_id',
         'dosage',
         'time_reminder',
@@ -24,9 +24,9 @@ class MedicationReminder extends Model
         'repititon' => ReminderRepetitionEnum::class,
     ];
 
-    public function user()
+    public function Patient()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Patient::class);
     }
 
     public function medication()

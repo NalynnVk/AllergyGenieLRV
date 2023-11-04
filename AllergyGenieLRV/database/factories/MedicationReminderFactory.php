@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Medication;
-use App\Models\User;
+use App\Models\Patient;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +19,8 @@ class MedicationReminderFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::inRandomOrder()->pluck('id')->first(),
+            //TODO: tukar user id kepada patient id
+            'patient_id' => Patient::inRandomOrder()->pluck('id')->first(),
             'medication_id' => Medication::inRandomOrder()->pluck('id')->first(),
             'time_reminder' => $this->faker->time(),
         ];

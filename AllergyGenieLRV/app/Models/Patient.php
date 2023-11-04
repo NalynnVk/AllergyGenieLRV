@@ -41,4 +41,10 @@ class Patient extends Model
     {
         return $this->belongsToMany(Allergen::class);
     }
+
+    //TODO: tambah function medicationReminder
+    public function medicationReminder()
+    {
+        return $this->hasMany(MedicationReminder::class);
+    }
 }
