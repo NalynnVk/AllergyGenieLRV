@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\v1\AllergenController;
 use App\Http\Controllers\v1\AuthController;
+use App\Http\Controllers\v1\DependantController;
 use App\Http\Controllers\v1\EmergencyContactController;
 use App\Http\Controllers\v1\FirstAidStepController;
 use App\Http\Controllers\v1\InsightController;
@@ -52,6 +53,6 @@ Route::name('api.')
         // Route::get('/patient', [PatientController::class, 'index']);
         Route::get('/emergencycontact', [EmergencyContactController::class, 'index']);
         Route::get('/tracking', [TrackingController::class, 'index']);
-        // Route::get('/allergen', [AllergenController::class, 'index']);
+        Route::get('/dependant', [DependantController::class, 'index']);
 
     });

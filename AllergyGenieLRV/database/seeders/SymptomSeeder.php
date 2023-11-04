@@ -17,62 +17,62 @@ class SymptomSeeder extends Seeder
         // Symptom::factory(3)->create();
         Symptom::create([
             'name' => 'Skin-related Symptoms',
-            'description' => 'test',
+            'description' => 'Developed hives on the arms',
             'severity' => SymptomSeverityEnum::Mild(),
         ]);
         Symptom::create([
             'name' => 'Nasal Symptoms',
-            'description' => 'test',
+            'description' => 'Experienced runny nose and sneezing',
             'severity' => SymptomSeverityEnum::Mild(),
         ]);
         Symptom::create([
             'name' => 'Ocular Symptoms',
-            'description' => 'test',
+            'description' => 'Watery eyes and itchiness',
             'severity' => SymptomSeverityEnum::Mild(),
         ]);
         Symptom::create([
             'name' => 'Gastrointestinal Symptoms',
-            'description' => 'test',
+            'description' => 'Stomach cramps and diarrhea',
             'severity' => SymptomSeverityEnum::Mild(),
         ]);
         Symptom::create([
             'name' => 'Psychological symptoms',
-            'description' => 'test',
+            'description' => 'Anxiety and restlessness at a party',
             'severity' => SymptomSeverityEnum::Mild(),
         ]);
         Symptom::create([
             'name' => 'Respiratory Symptoms',
-            'description' => 'test',
+            'description' => 'Wheezing and shortness of breath at home',
             'severity' => SymptomSeverityEnum::Severe(),
         ]);
         Symptom::create([
             'name' => 'Musculoskeletal symptoms',
-            'description' => 'test',
+            'description' => 'Joint pain and stiffness triggered',
             'severity' => SymptomSeverityEnum::Severe(),
         ]);
         Symptom::create([
             'name' => 'Oral Symptoms',
-            'description' => 'test',
+            'description' => 'Swollen tongue and mouth sores',
             'severity' => SymptomSeverityEnum::Severe(),
         ]);
         Symptom::create([
             'name' => 'Cardiovascular Symptoms',
-            'description' => 'test',
+            'description' => 'Rapid heartbeat and dizziness',
             'severity' => SymptomSeverityEnum::Severe(),
         ]);
         Symptom::create([
             'name' => 'Systemic Symptoms',
-            'description' => 'test',
+            'description' => 'Overall fatigue and weakness',
             'severity' => SymptomSeverityEnum::Severe(),
         ]);
         Symptom::create([
             'name' => 'Anaphylaxis Symptoms',
-            'description' => 'test',
+            'description' => 'Severe swelling and difficulty breathing',
             'severity' => SymptomSeverityEnum::Severe(),
         ]);
         Symptom::create([
             'name' => 'Neurological symptoms',
-            'description' => 'test',
+            'description' => 'Experienced dizziness and confusion',
             'severity' => SymptomSeverityEnum::Severe(),
         ]);
     }
