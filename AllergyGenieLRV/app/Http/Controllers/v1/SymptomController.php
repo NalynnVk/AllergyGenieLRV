@@ -24,4 +24,10 @@ class SymptomController extends Controller
         return $this->return_paginated_api(true, Response::HTTP_OK, null, SymptomResource::collection($symptom), null, $this->apiPaginator($symptom));
         //Returning a paginated API response with a success indicator, HTTP status code, insight data, and pagination information.
     }
+
+    public function show(Symptom $symptom)
+    {
+        $data = Symptom::find($symptom->id);
+        return $this->return_api(true, Response::HTTP_OK, null, new SymptomResource($data), null, null);
+    }
 }

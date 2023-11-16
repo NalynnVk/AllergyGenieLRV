@@ -24,7 +24,7 @@ class MedicationReminder extends Model
         'repititon' => ReminderRepetitionEnum::class,
     ];
 
-    public function Patient()
+    public function patient()
     {
         return $this->belongsTo(Patient::class);
     }

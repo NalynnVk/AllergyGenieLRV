@@ -10,7 +10,7 @@ class EmergencyContact extends Model
     use HasFactory;
 
     protected $fillable = [
-        'is_first_responder',
+        // 'is_first_responder',
         'name',
         'phone_number',
         'patient_id',

@@ -42,17 +42,51 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::name('api.')
     ->middleware('auth:sanctum')
     ->group(function () {
-        //this use for display profile
+        // this use for display profile
+        // user needed store and update //// PENDING
         Route::get('/me', [AuthController::class, 'me']);
-        Route::get('/insight', [InsightController::class, 'index']);
-        Route::get('/allergen', [AllergenController::class, 'index']);
-        Route::get('/medication', [MedicationController::class, 'index']);
-        Route::get('/symptom', [SymptomController::class, 'index']);
-        Route::get('/firstaidstep', [FirstAidStepController::class, 'index']);
-        Route::get('/medicationreminder', [MedicationReminderController::class, 'index']);
-        // Route::get('/patient', [PatientController::class, 'index']);
-        Route::get('/emergencycontact', [EmergencyContactController::class, 'index']);
-        Route::get('/tracking', [TrackingController::class, 'index']);
-        Route::get('/dependant', [DependantController::class, 'index']);
 
+        // user done
+        Route::get('/insight', [InsightController::class, 'index']);
+        Route::get('/insight/{insight}', [InsightController::class, 'show']);
+
+        // user done without store and update
+        Route::get('/allergen', [AllergenController::class, 'index']);
+        Route::get('/allergen/{allergen}', [AllergenController::class, 'show']);
+        Route::post('/allergen', [AllergenController::class, 'store']);
+        Route::put('/allergen/{allergen}', [AllergenController::class, 'update']);
+
+        // user done
+        Route::get('/medication', [MedicationController::class, 'index']);
+        Route::get('/medication/{medication}', [MedicationController::class, 'show']);
+
+        // user done
+        Route::get('/symptom', [SymptomController::class, 'index']);
+        Route::get('/symptom/{symptom}', [SymptomController::class, 'index']);
+
+        // user done
+        Route::get('/firstaidstep', [FirstAidStepController::class, 'index']);
+        Route::get('/firstaidstep/{firstaidstep}', [FirstAidStepController::class, 'show']);
+
+        // user needed store and update //// FAIL
+        Route::get('/medicationreminder/{medicationreminder}', [MedicationReminderController::class, 'show']);
+        Route::get('/medicationreminder', [MedicationReminderController::class, 'index']);
+        Route::post('/medicationreminder', [MedicationReminderController::class, 'store']);
+        Route::put('/medicationreminder/{medicationreminder}', [MedicationReminderController::class, 'update']);
+
+        // user needed store and update //// FAIL
+        Route::get('/emergencycontact', [EmergencyContactController::class, 'index']);
+        Route::get('/emergencycontact/{emergencycontact}', [EmergencyContactController::class, 'show']);
+        Route::post('/emergencycontact', [EmergencyContactController::class, 'store']);
+        Route::put('/emergencycontact/{emergencycontact}', [EmergencyContactController::class, 'update']);
+
+        // user needed store and update //// FAIL
+        Route::get('/tracking', [TrackingController::class, 'index']);
+        Route::get('/tracking/{tracking}', [TrackingController::class, 'show']);
+        Route::post('/tracking', [TrackingController::class, 'store']);
+        Route::put('/tracking/{tracking}', [TrackingController::class, 'update']);
+
+        // user done maybe
+        Route::get('/dependant', [DependantController::class, 'index']);
+        Route::get('/dependant/{dependant}', [DependantController::class, 'show']);
     });

@@ -16,7 +16,7 @@ class EmergencyContactResource extends JsonResource
     {
         return
             [
-                'is_first_responder' => $this->is_first_responder_label,
+                // 'is_first_responder' => $this->is_first_responder_label,
                 'name' => $this->name,
                 'phone_number' => $this->phone_number,
             ];

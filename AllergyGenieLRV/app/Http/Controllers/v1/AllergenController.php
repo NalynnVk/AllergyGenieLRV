@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\v1\AllergenStoreRequest;
 use App\Http\Resources\v1\AllergenResource;
 use App\Models\Allergen;
 use App\Traits\ApiPaginatorTrait;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class AllergenController extends Controller
 {
@@ -23,6 +26,38 @@ class AllergenController extends Controller
 
         return $this->return_paginated_api(true, Response::HTTP_OK, null, AllergenResource::collection($allergen), null, $this->apiPaginator($allergen));
         //Returning a paginated API response with a success indicator, HTTP status code, insight data, and pagination information.
+    }
+
+    public function show(Allergen $allergen)
+    {
+        $data = Allergen::find($allergen->id);
+        return $this->return_api(true, Response::HTTP_OK, null, new AllergenResource($data), null, null);
+    }
+
+    public function store(AllergenStoreRequest $request)
+    {
+        $validated = $request->validated();
+
+        try {
+            // if ($request->hasFile('photo_path')){
+            //     $photoPath = $request->file('photo_path')->store('', 'allergen');
+            //     $validated['photo_path'] = $photoPath;
+            // }
+
+            // $validated['user_id'] = $validated['users']['id'];
+
+            // $allergen = Auth::user()->allergens()->create($validated);
+            $data = new Allergen;
+            $data = $data->create($validated);
+            return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
+        } catch (Exception $e) {
+            error_log($e);
+            return $this->return_api(false, Response::HTTP_INTERNAL_SERVER_ERROR, null, null, null);
+        }
+    }
+
+    public function update()
+    {
     }
 
 }

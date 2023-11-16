@@ -35,4 +35,10 @@ class DependantController extends Controller
     //     // dd($insight);
     //     return $this->return_paginated_api(true, Response::HTTP_OK, null, DependantResource::collection($data), null, $this->apiPaginator($data));
     // }
+
+    public function show(Dependant $dependant)
+    {
+        $data = Dependant::find($dependant->id);
+        return $this->return_api(true, Response::HTTP_OK, null, new DependantResource($data), null, null);
+    }
 }

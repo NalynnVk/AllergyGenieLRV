@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('medication_reminders', function (Blueprint $table) {
             $table->id();
-            //TODO: tukar user id kepada patient id
             $table->unsignedBigInteger('patient_id');
             $table->unsignedBigInteger('medication_id');
             $table->enum('dosage', DosageEnum::toValues())->default(DosageEnum::Half());

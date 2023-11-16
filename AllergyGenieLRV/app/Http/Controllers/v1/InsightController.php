@@ -25,4 +25,10 @@ class InsightController extends Controller
         // dd($insight);
         return $this->return_paginated_api(true, Response::HTTP_OK, null, InsightResource::collection($insight), null, $this->apiPaginator($insight));
     }
+
+    public function show(Insight $insight)
+    {
+        $data = Insight::find($insight->id);
+        return $this->return_api(true, Response::HTTP_OK, null, new InsightResource($data), null, null);
+    }
 }

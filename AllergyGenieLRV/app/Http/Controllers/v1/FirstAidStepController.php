@@ -24,4 +24,10 @@ class FirstAidStepController extends Controller
         return $this->return_paginated_api(true, Response::HTTP_OK, null, FirstAidStepResource::collection($firstaidstep), null, $this->apiPaginator($firstaidstep));
         //Returning a paginated API response with a success indicator, HTTP status code, insight data, and pagination information.
     }
+
+    public function show(FirstAidStep $firstaidstep)
+    {
+        $data = FirstAidStep::find($firstaidstep->id);
+        return $this->return_api(true, Response::HTTP_OK, null, new FirstAidStepResource($data), null, null);
+    }
 }

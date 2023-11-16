@@ -43,7 +43,7 @@ class Patient extends Model
     }
 
     //TODO: tambah function medicationReminder
-    public function medicationReminder()
+    public function medicationReminders()
     {
         return $this->hasMany(MedicationReminder::class);
     }
