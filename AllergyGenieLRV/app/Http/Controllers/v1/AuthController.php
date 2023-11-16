@@ -40,24 +40,24 @@ class AuthController extends Controller
             // //check if user is lecturer
             // if ($user->hasRole('lecturer')) {
 
-                // If user email already verified
-                // if ($user->hasVerifiedEmail()) {
-                    // Already approve by admin
-                    if ($user->registration_status  == (string) RegistrationStatusEnum::Approved()) {
-                        // Create access token
-                        $user->accessToken = $user->createToken('auth-token')->plainTextToken;
+            // If user email already verified
+            // if ($user->hasVerifiedEmail()) {
+            // Already approve by admin
+            if ($user->registration_status  == (string) RegistrationStatusEnum::Approved()) {
+                // Create access token
+                $user->accessToken = $user->createToken('auth-token')->plainTextToken;
 
-                        // Return response with user resource model
-                        return $this->return_api(true, Response::HTTP_OK, null, new UserResource($user), null);
-                    } else if ($user->registration_status == (string) RegistrationStatusEnum::Rejected()) {
-                        return $this->return_api(false, Response::HTTP_UNAUTHORIZED, __("Your account registration has been rejected, please contact the admin."), $userTemp, null);
-                    } else {
-                        return $this->return_api(false, Response::HTTP_UNAUTHORIZED, __("Your account registration has not yet been approved."), $userTemp, null);
-                    }
-                // } else {
-                //     // Email not verified
-                //     return $this->return_api(false, Response::HTTP_FORBIDDEN, trans("auth.email_not_verified"), $userTemp, null);
-                // }
+                // Return response with user resource model
+                return $this->return_api(true, Response::HTTP_OK, null, new UserResource($user), null);
+            } else if ($user->registration_status == (string) RegistrationStatusEnum::Rejected()) {
+                return $this->return_api(false, Response::HTTP_UNAUTHORIZED, __("Your account registration has been rejected, please contact the admin."), $userTemp, null);
+            } else {
+                return $this->return_api(false, Response::HTTP_UNAUTHORIZED, __("Your account registration has not yet been approved."), $userTemp, null);
+            }
+            // } else {
+            //     // Email not verified
+            //     return $this->return_api(false, Response::HTTP_FORBIDDEN, trans("auth.email_not_verified"), $userTemp, null);
+            // }
             // } else {
 
             //     return $this->return_api(false, Response::HTTP_UNAUTHORIZED, "Unauthorized. Please Contact Admin.", null, null);

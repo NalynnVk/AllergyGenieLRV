@@ -49,25 +49,23 @@ class TrackingController extends Controller
     {
         $validated = $request->validated();
 
-            // if ($request->hasFile('photo_path')){
-            //     $photoPath = $request->file('photo_path')->store('', 'medicationreminder');
-            //     $validated['photo_path'] = $photoPath;
-            // }
+        // if ($request->hasFile('photo_path')){
+        //     $photoPath = $request->file('photo_path')->store('', 'medicationreminder');
+        //     $validated['photo_path'] = $photoPath;
+        // }
 
-            // $validated['user_id'] = $validated['users']['id'];
+        // $validated['user_id'] = $validated['users']['id'];
 
-            // $medicationreminder = Auth::user()->medicationreminders()->create($validated);
-            $validated['symptom_id'] = $validated['symptom']['id'];
-            $validated['allergen_id'] = $validated['allergen']['id'];
+        // $medicationreminder = Auth::user()->medicationreminders()->create($validated);
+        $validated['symptom_id'] = $validated['symptom']['id'];
+        $validated['allergen_id'] = $validated['allergen']['id'];
 
-            $symptom = Auth::user()->patient->trackings()->create($validated);
+        $symptom = Auth::user()->patient->trackings()->create($validated);
 
-            return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
-
+        return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
     }
 
     public function update()
     {
     }
-
 }

@@ -18,7 +18,7 @@ class AllergenController extends Controller
 
     public function index()
     {
-        $take = request()->get('take',1000);
+        $take = request()->get('take', 1000);
         //Starting the 'index' method for displaying insights. Setting a default value of 1000 for 'take' parameter.
 
         $allergen = Allergen::paginate($take);
@@ -38,26 +38,20 @@ class AllergenController extends Controller
     {
         $validated = $request->validated();
 
-        try {
-            // if ($request->hasFile('photo_path')){
-            //     $photoPath = $request->file('photo_path')->store('', 'allergen');
-            //     $validated['photo_path'] = $photoPath;
-            // }
+        // if ($request->hasFile('photo_path')){
+        //     $photoPath = $request->file('photo_path')->store('', 'allergen');
+        //     $validated['photo_path'] = $photoPath;
+        // }
 
-            // $validated['user_id'] = $validated['users']['id'];
+        // $validated['user_id'] = $validated['users']['id'];
 
-            // $allergen = Auth::user()->allergens()->create($validated);
-            $data = new Allergen;
-            $data = $data->create($validated);
-            return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
-        } catch (Exception $e) {
-            error_log($e);
-            return $this->return_api(false, Response::HTTP_INTERNAL_SERVER_ERROR, null, null, null);
-        }
+        // $allergen = Auth::user()->allergens()->create($validated);
+        $data = new Allergen;
+        $data = $data->create($validated);
+        return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
     }
 
     public function update()
     {
     }
-
 }
