@@ -2,12 +2,11 @@
 
 namespace App\Http\Requests\v1;
 
-use App\Enums\DosageEnum;
-use App\Enums\ReminderRepetitionEnum;
+use App\Enums\RegistrationStatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Spatie\Enum\Laravel\Rules\EnumRule;
 
-class MedicationReminderUpdateRequest extends FormRequest
+class ProfileUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +24,13 @@ class MedicationReminderUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'medication.id' => 'required|numeric', //TODO
-            'dosage' => ['required', new EnumRule(DosageEnum::class)],
-            'time_reminder' => 'required|string',
-            'repititon' => ['required', new EnumRule(ReminderRepetitionEnum::class)],
+            'name' => 'required|string',
+            'date_of_birth' => 'required|string', //date
+            'phone_number' => 'required|string',
+            'password' => 'required|string',
+            // 'profile_photo_path'=>'required|string',
+            // 'email' => 'required|string',
+            'registration_status' => ['required', new EnumRule(RegistrationStatusEnum::class)],
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\TrackingStoreRequest;
+use App\Http\Requests\v1\TrackingUpdateRequest;
 use App\Http\Resources\v1\TrackingResource;
 use App\Models\Tracking;
 use App\Traits\ApiPaginatorTrait;
@@ -65,7 +66,13 @@ class TrackingController extends Controller
         return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
     }
 
-    public function update()
+    public function update(TrackingUpdateRequest $request,Tracking $tracking)
     {
+        $validated=$request->validated();
+        $id=Tracking::find($tracking->id);
+        // dd($id);
+        $tracking=$id->update($validated);
+
+        return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
     }
 }

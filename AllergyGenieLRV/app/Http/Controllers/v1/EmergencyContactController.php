@@ -4,6 +4,7 @@ namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\EmergencyContactStoreRequest;
+use App\Http\Requests\v1\EmergencyContactUpdateRequest;
 use App\Http\Resources\v1\EmergencyContactResource;
 use App\Models\EmergencyContact;
 use App\Traits\ApiPaginatorTrait;
@@ -52,7 +53,14 @@ class EmergencyContactController extends Controller
         return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
     }
 
-    public function update()
+    public function update(EmergencyContactUpdateRequest $request,EmergencyContact $emergencycontact)
     {
+        $validated=$request->validated();
+        $id=EmergencyContact::find($emergencycontact->id);
+        // dd($id);
+        $emergencycontact=$id->update($validated);
+
+        return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
+
     }
 }

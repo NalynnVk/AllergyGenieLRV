@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\v1;
 
+use App\Enums\SymptomSeverityEnum;
 use Illuminate\Foundation\Http\FormRequest;
+use Spatie\Enum\Laravel\Rules\EnumRule;
 
 class TrackingUpdateRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class TrackingUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,10 @@ class TrackingUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'symptom.id' => 'required|numeric',
+            'allergen.id' => 'required|numeric',
+            'severity' => ['required', new EnumRule(SymptomSeverityEnum::class)],
+            'notes' => 'required|string',
         ];
     }
 }

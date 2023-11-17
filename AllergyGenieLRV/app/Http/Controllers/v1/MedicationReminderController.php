@@ -4,6 +4,7 @@ namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\MedicationReminderStoreRequest;
+use App\Http\Requests\v1\MedicationReminderUpdateRequest;
 use App\Http\Resources\v1\MedicationReminderResource;
 use App\Models\MedicationReminder;
 use App\Traits\ApiPaginatorTrait;
@@ -48,7 +49,24 @@ class MedicationReminderController extends Controller
         return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
     }
 
-    public function update()
+    //UPDATE
+    // public function update(MedicationReminderUpdateRequest $request, MedicationReminder $medicationreminder)
+    // {
+    //     $validated = $request->validated();
+    //     $id = MedicationReminder::find($medicationreminder->id);
+    //     // dd($id);
+    //     $medicationreminder = $id->update($validated);
+    //     return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
+    // }
+
+    public function update(MedicationReminderUpdateRequest $request,MedicationReminder $medicationreminder)
     {
+        $validated=$request->validated();
+        $id=MedicationReminder::find($medicationreminder->id);
+        // dd($id);
+        $medicationreminder=$id->update($validated);
+
+        return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
+
     }
 }

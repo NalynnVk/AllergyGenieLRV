@@ -5,6 +5,7 @@ namespace App\Http\Controllers\v1;
 use App\Actions\Fortify\PasswordValidationRules;
 use App\Enums\RegistrationStatusEnum;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\v1\ProfileUpdateRequest;
 use App\Http\Resources\v1\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -84,8 +85,14 @@ class AuthController extends Controller
         }
     }
 
-    // public function register()
-    // {
+    //UPDATE
+    public function update(ProfileUpdateRequest $request,User $user)
+    {
+        $validated=$request->validated();
+        $id=User::find($user->id);
+        // dd($id);
+        $user=$id->update($validated);
+        return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
 
-    // }
+    }
 }

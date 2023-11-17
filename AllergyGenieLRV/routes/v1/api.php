@@ -45,6 +45,7 @@ Route::name('api.')
         // this use for display profile
         // user needed store and update //// PENDING
         Route::get('/me', [AuthController::class, 'me']);
+        Route::put('/user/{user}', [AuthController::class, 'update']);
 
         // user done
         Route::get('/insight', [InsightController::class, 'index']);
