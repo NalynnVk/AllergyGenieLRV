@@ -28,7 +28,7 @@ class AllergenResource extends Resource
         return __("Allergen Type");
     }
 
-    protected static ?string $navigationIcon = 'heroicon-o-exclamation-circle';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function form(Form $form): Form
     {
