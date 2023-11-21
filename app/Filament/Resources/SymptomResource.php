@@ -19,20 +19,29 @@ use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\BadgeColumn;
 use Spatie\Enum\Laravel\Rules\EnumRule;
-
+use Filament\Tables\Filters\Filter;
 
 class SymptomResource extends Resource
 {
     protected static ?string $model = Symptom::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationGroup = "Allergy Information";
+
+    public static function getPluralModelLabel(): string
+    {
+        return __("Symptom Category");
+    }
+
+
+    protected static ?string $navigationIcon = 'heroicon-o-heart';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('name')
-                    ->placeholder('e.g., Neurological symptoms'),
+                    ->placeholder('e.g., Neurological symptoms')
+                    ->label('Symptom Name'),
 
                 Select::make('severity')
                     ->options(EnumMap::getSymptomSeverity())
@@ -51,18 +60,39 @@ class SymptomResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('name'),
+                TextColumn::make('id')
+                    ->searchable(),
+                TextColumn::make('name')
+                    ->label('Symptom Name')
+                    ->searchable(),
                 BadgeColumn::make('severity_label')
                     ->colors([
                         'primary' => SymptomSeverityEnum::Mild()->label,
                         'primary' => SymptomSeverityEnum::Severe()->label,
-                    ]),
+                    ])
+                    ->label('Severity'),
+                // ->searchable(),
                 TextColumn::make('description')->limit(25)
+                    ->searchable(),
 
             ])
             ->filters([
-                //
+                Filter::make('created_at')
+                    ->form([
+                        Forms\Components\DatePicker::make('created_from'),
+                        Forms\Components\DatePicker::make('created_until'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['created_from'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+                            )
+                            ->when(
+                                $data['created_until'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+                            );
+                    })
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

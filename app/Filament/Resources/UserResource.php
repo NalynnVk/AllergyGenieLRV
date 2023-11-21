@@ -16,37 +16,49 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
-
+use Filament\Tables\Filters\Filter;
 
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    public static function shouldRegisterNavigation():bool
+    {
+        return false;
+    }
+
+    protected static ?string $navigationGroup = "User Information";
+
+    public static function getPluralModelLabel(): string
+    {
+        return __("User Info");
+    }
+
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make ('name')
-                ->placeholder('e.g., Davikah Sharma'),
+                TextInput::make('name')
+                    ->placeholder('e.g., Davikah Sharma'),
 
                 DatePicker::make('date_of_birth')
-                ->placeholder('e.g., 20/20/2020'),
+                    ->placeholder('e.g., 20/20/2020'),
 
                 TextInput::make('phone_number')
-                ->label('Phone Number')
-                ->rules(['max:255', 'string'])
-                ->required()
-                ->placeholder('e.g., +6012-345-6789')
-                ->columnSpan([
-                    'default' => 2,
-                    'md' => 1,
-                    'lg' => 1,
-                ]),
+                    ->label('Phone Number')
+                    ->rules(['max:255', 'string'])
+                    ->required()
+                    ->placeholder('e.g., +6012-345-6789')
+                    ->columnSpan([
+                        'default' => 2,
+                        'md' => 1,
+                        'lg' => 1,
+                    ]),
 
-                TextInput::make ('password')
-                ->placeholder('e.g., Davikah@2020'),
+                TextInput::make('password')
+                    ->placeholder('e.g., Davikah@2020'),
 
                 FileUpload::make('profile_photo_path')
                     ->visibility('private')
@@ -74,14 +86,30 @@ class UserResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id'),
-                TextColumn::make('name'),
+                TextColumn::make('name')
+                    ->label('User Name'),
                 TextColumn::make('date_of_birth'),
                 TextColumn::make('phone_number'),
                 // TextColumn::make('password'),
                 // TextColumn::make('email'),
             ])
             ->filters([
-                //
+                Filter::make('created_at')
+                    ->form([
+                        Forms\Components\DatePicker::make('created_from'),
+                        Forms\Components\DatePicker::make('created_until'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['created_from'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+                            )
+                            ->when(
+                                $data['created_until'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+                            );
+                    })
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

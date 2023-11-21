@@ -21,12 +21,20 @@ use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\TextColumn;
 use Spatie\Enum\Laravel\Rules\EnumRule;
+use Filament\Tables\Filters\Filter;
 
 class MedicationReminderResource extends Resource
 {
     protected static ?string $model = MedicationReminder::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationGroup = "User Information";
+
+    public static function getPluralModelLabel(): string
+    {
+        return __("Medication Reminder");
+    }
+
+    protected static ?string $navigationIcon = 'heroicon-o-clock';
 
     public static function form(Form $form): Form
     {
@@ -78,11 +86,16 @@ class MedicationReminderResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('user.name')
-                    ->label('User'),
+                TextColumn::make('id')
+                    ->searchable(),
+                TextColumn::make('patient.user.name')
+                    ->label('User Name')
+                    ->searchable(),
+                // TextColumn::make('user.name')
+                //     ->label('User'),
                 TextColumn::make('medication.name')
-                    ->label('Medication Name'),
+                    ->label('Medication Name')
+                    ->searchable(),
                 BadgeColumn::make('dosage_label')
                     ->colors([
                         'primary' => DosageEnum::Half()->label,
@@ -91,17 +104,33 @@ class MedicationReminderResource extends Resource
                         'primary' => DosageEnum::More()->label,
                     ])
                     ->label('Dosage'),
-                TextColumn::make('time_reminder'),
+                TextColumn::make('time_reminder')
+                    ->searchable(),
                 BadgeColumn::make('repititon_label')
-                ->colors([
-                    'primary' => ReminderRepetitionEnum::Once()->label,
-                    'primary' => ReminderRepetitionEnum::Daily()->label,
-                    'primary' => ReminderRepetitionEnum::Weekly()->label,
-                ])
-                ->label('Repitition'),
+                    ->colors([
+                        'primary' => ReminderRepetitionEnum::Once()->label,
+                        'primary' => ReminderRepetitionEnum::Daily()->label,
+                        'primary' => ReminderRepetitionEnum::Weekly()->label,
+                    ])
+                    ->label('Repitition'),
             ])
             ->filters([
-                //
+                Filter::make('created_at')
+                    ->form([
+                        Forms\Components\DatePicker::make('created_from'),
+                        Forms\Components\DatePicker::make('created_until'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['created_from'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+                            )
+                            ->when(
+                                $data['created_until'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+                            );
+                    })
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

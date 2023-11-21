@@ -22,12 +22,20 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\BadgeColumn;
 use Spatie\Enum\Laravel\Rules\EnumRule;
+use Filament\Tables\Filters\Filter;
 
 class DependantResource extends Resource
 {
     protected static ?string $model = Dependant::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationGroup = "User Information";
+
+    public static function getPluralModelLabel(): string
+    {
+        return __("Dependant Info");
+    }
+
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function form(Form $form): Form
     {
@@ -94,15 +102,20 @@ class DependantResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
+                TextColumn::make('id')
+                    ->searchable(),
                 TextColumn::make('user.name')
-                    ->label('Dependant'),
+                    ->label('Dependant Name')
+                    ->searchable(),
                 TextColumn::make('user.date_of_birth')
-                    ->label('Date Of Birth'),
+                    ->label('Date Of Birth')
+                    ->searchable(),
                 TextColumn::make('user.phone_number')
-                    ->label('Phone Number'),
+                    ->label('Phone Number')
+                    ->searchable(),
                 TextColumn::make('patient.user.name')
-                    ->label('Parent / Guardian'),
+                    ->label('Caregiver Name')
+                    ->searchable(),
                 BadgeColumn::make('relationship_label')
                     ->colors([
                         'primary' => RelationshipEnum::Spouse()->label,
@@ -115,7 +128,22 @@ class DependantResource extends Resource
                     ])
             ])
             ->filters([
-                //
+                Filter::make('created_at')
+                    ->form([
+                        Forms\Components\DatePicker::make('created_from'),
+                        Forms\Components\DatePicker::make('created_until'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['created_from'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+                            )
+                            ->when(
+                                $data['created_until'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+                            );
+                    })
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

@@ -16,12 +16,20 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 
 class EmergencyContactResource extends Resource
 {
     protected static ?string $model = EmergencyContact::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationGroup = "Care Plan Information";
+
+    public static function getPluralModelLabel(): string
+    {
+        return __("Emergency Contact Info");
+    }
+
+    protected static ?string $navigationIcon = 'heroicon-o-phone';
 
     public static function form(Form $form): Form
     {
@@ -29,7 +37,8 @@ class EmergencyContactResource extends Resource
             ->schema([
                 // table->boolean('is_first_responder')->default(false);
                 TextInput::make('name')
-                    ->placeholder('e.g., Mark Lee'),
+                    ->placeholder('e.g., Mark Lee')
+                    ->label('Contact Name'),
 
                 TextInput::make('phone_number')
                     ->label('Phone Number')
@@ -62,15 +71,35 @@ class EmergencyContactResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
+                TextColumn::make('id')
+                    ->searchable(),
                 // $table->boolean('is_first_responder')->default(false);
-                TextColumn::make('name'),
-                TextColumn::make('phone_number'),
+                TextColumn::make('name')
+                    ->label('Contact Name')
+                    ->searchable(),
+                TextColumn::make('phone_number')
+                    ->searchable(),
                 TextColumn::make('patient.user.name')
-                    ->label('Patient'),
+                    ->label('Patient')
+                    ->searchable(),
             ])
             ->filters([
-                //
+                Filter::make('created_at')
+                    ->form([
+                        Forms\Components\DatePicker::make('created_from'),
+                        Forms\Components\DatePicker::make('created_until'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['created_from'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+                            )
+                            ->when(
+                                $data['created_until'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+                            );
+                    })
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

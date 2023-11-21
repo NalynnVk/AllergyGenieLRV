@@ -16,13 +16,20 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TextArea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\FileUpload;
-
+use Filament\Tables\Filters\Filter;
 
 class InsightResource extends Resource
 {
     protected static ?string $model = Insight::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationGroup = "Allergy Information";
+
+    public static function getPluralModelLabel(): string
+    {
+        return __("Allergy Insight");
+    }
+
+    protected static ?string $navigationIcon = 'heroicon-o-book-open';
 
     public static function form(Form $form): Form
     {
@@ -45,12 +52,12 @@ class InsightResource extends Resource
                         'lg' => 1,
                     ]),
 
-                TextInput::make ('title')
-                ->placeholder('e.g., Allergic Management Treatment'),
+                TextInput::make('title')
+                    ->placeholder('e.g., Allergic Management Treatment'),
 
                 TextArea::make('description')
 
-                ->placeholder('e.g., Allergic management treatment involves a combination of approaches aimed at reducing exposure to allergens, managing symptoms, and modifying the immune systems response to allergens.'),
+                    ->placeholder('e.g., Allergic management treatment involves a combination of approaches aimed at reducing exposure to allergens, managing symptoms, and modifying the immune systems response to allergens.'),
             ]);
     }
 
@@ -58,12 +65,30 @@ class InsightResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('title'),
-                TextColumn::make('description')->limit(85),
+                TextColumn::make('id')
+                    ->searchable(),
+                TextColumn::make('title')
+                    ->searchable(),
+                TextColumn::make('description')->limit(85)
+                    ->searchable(),
             ])
             ->filters([
-                //
+                Filter::make('created_at')
+                    ->form([
+                        Forms\Components\DatePicker::make('created_from'),
+                        Forms\Components\DatePicker::make('created_until'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['created_from'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+                            )
+                            ->when(
+                                $data['created_until'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+                            );
+                    })
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
