@@ -21,7 +21,11 @@ class MedicationReminderController extends Controller
     {
         $take = request()->get('take', 1000);
         $user = auth()->user();
-        $data = $user->patient->medicationReminder()->paginate($take);
+
+        if(!$user->patient){
+            return $this->return_api(true, Response::HTTP_BAD_REQUEST, 'Sorry, you are not Patient', null, null, null);
+        }
+        $data = $user->patient->medicationReminders()->paginate($take);
         // dd($data);
         // dd($insight);
         return $this->return_paginated_api(true, Response::HTTP_OK, null, MedicationReminderResource::collection($data), null, $this->apiPaginator($data));

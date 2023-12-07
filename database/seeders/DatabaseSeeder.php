@@ -14,6 +14,7 @@ use App\Models\Medication;
 use App\Models\Patient;
 use App\Models\Symptom;
 use App\Models\Tracking;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,7 +26,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        \App\Models\User::factory()->create([
+        User::factory()->create([
             'name' => 'Administrator 1',
             'email' => 'admin@admin.com',
             'email_verified_at' => now(),
