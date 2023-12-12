@@ -13,6 +13,7 @@ class MedicationSeeder extends Seeder
      */
     public function run(): void
     {
+        //
         Medication::create(['name' => 'Aqueous cream']);
         Medication::create(['name' => 'Cetirizine']);
         Medication::create(['name' => 'Loratadine']);
