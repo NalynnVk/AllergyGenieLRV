@@ -16,6 +16,7 @@ class AllergenResource extends JsonResource
     {
         return [
             //TODO kena ada id
+            'id' => $this->id,
             'name' => $this->name,
         ];
     }
