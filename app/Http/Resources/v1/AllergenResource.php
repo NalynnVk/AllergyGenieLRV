@@ -15,7 +15,6 @@ class AllergenResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            //TODO kena ada id
             'id' => $this->id,
             'name' => $this->name,
         ];
