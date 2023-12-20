@@ -15,6 +15,7 @@ class SymptomResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'name'=>$this->name,
             'severity'=>$this->severity_label,
             'description'=>$this->description,
