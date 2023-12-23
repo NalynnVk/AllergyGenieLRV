@@ -19,7 +19,7 @@ class UserResource extends JsonResource
             'date_of_birth'  => $this->date_of_birth,
             'phone_number'  => $this->phone_number,
             'profile_photo_path'  => $this->profile_photo_path,
-            'registration_status'  => $this->registration_status_label,
+            'registration_status'  => $this->registration_status,
             "access_token" => $this->when($this->id == auth()->id(), function () {
                 return $this->accessToken;
             }),

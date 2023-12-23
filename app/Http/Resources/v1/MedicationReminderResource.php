@@ -20,9 +20,9 @@ class MedicationReminderResource extends JsonResource
 
             //name dari medication
             'medication'=> new MedicationResource($this->medication),
-            'dosage' => $this->dosage_label,
+            'dosage' => $this->dosage,
             'time_reminder' => $this->time_reminder,
-            'repititon' => $this->repititon_label,
+            'repititon' => $this->repititon,
 
             //kalau list MedicationResource::collection()
 

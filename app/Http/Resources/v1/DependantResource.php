@@ -17,7 +17,7 @@ class DependantResource extends JsonResource
         return [
             'user'=> new UserResource($this->user),
             // 'medication'=> new MedicationResource($this->medication),
-            'relationship'=> $this-> relationship_label,
+            'relationship'=> $this-> relationship,
         ];
     }
 }

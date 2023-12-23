@@ -19,7 +19,7 @@ class TrackingResource extends JsonResource
             //symptom(name), allergen(name), symptom(severity_label), symptom(notes)
             'symptom'=> new SymptomResource($this->symptom),
             'allergen'=> new AllergenResource($this->allergen),
-            'severity'=>$this->severity_label,
+            'severity'=>$this->severity,
             'notes'=>$this->name,
         ];
     }
