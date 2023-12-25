@@ -31,13 +31,11 @@ class TrackingController extends Controller
     {
         $take = request()->get('take', 1000);
 
-        $tracking = Tracking::paginate($take);
-
-        //$user = auth()->user();
-        //$data = $user->patient->medications()->paginate($take);
+        $user = auth()->user();
+        $data = $user->patient->trackings()->paginate($take);
 
         // dd($insight);
-        return $this->return_paginated_api(true, Response::HTTP_OK, null, TrackingResource::collection($tracking), null, $this->apiPaginator($tracking));
+        return $this->return_paginated_api(true, Response::HTTP_OK, null, TrackingResource::collection($data), null, $this->apiPaginator($data));
     }
 
     public function show(Tracking $tracking)
