@@ -24,8 +24,8 @@ class ProfileUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
-            'date_of_birth' => 'required|string', //date
+            'name' => 'string',
+            'date_of_birth' => 'string', //date
             // 'phone_number' => 'required|string',
             // 'password' => 'required|string',
             // 'profile_photo_path'=>'required|string',
