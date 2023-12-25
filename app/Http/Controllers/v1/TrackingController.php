@@ -48,9 +48,9 @@ class TrackingController extends Controller
     {
         $validated = $request->validated();
 
-        // $medicationreminder = Auth::user()->medicationreminders()->create($validated);
-        $validated['symptom_id'] = $validated['symptom']['id'];
-        $validated['allergen_id'] = $validated['allergen']['id'];
+        // // $medicationreminder = Auth::user()->medicationreminders()->create($validated);
+        // $validated['symptom_id'] = $validated['symptom']['id'];
+        // $validated['allergen_id'] = $validated['allergen']['id'];
 
         Auth::user()->patient->trackings()->create($validated);
 
