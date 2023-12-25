@@ -74,6 +74,7 @@ Route::name('api.')
         Route::get('/medicationreminder', [MedicationReminderController::class, 'index']);
         Route::post('/medicationreminder', [MedicationReminderController::class, 'store']);
         Route::put('/medicationreminder/{medicationreminder}', [MedicationReminderController::class, 'update']);
+        Route::delete('/medicationreminder/{medicationreminder}', [MedicationReminderController::class, 'delete']);
 
         // user needed store and update //// FAIL
         Route::get('/emergencycontact', [EmergencyContactController::class, 'index']);

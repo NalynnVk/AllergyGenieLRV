@@ -22,7 +22,7 @@ class MedicationReminderController extends Controller
         $take = request()->get('take', 1000);
         $user = auth()->user();
 
-        if(!$user->patient){
+        if (!$user->patient) {
             return $this->return_api(true, Response::HTTP_BAD_REQUEST, 'Sorry, you are not Patient', null, null, null);
         }
         $data = $user->patient->medicationReminders()->paginate($take);
@@ -41,12 +41,6 @@ class MedicationReminderController extends Controller
     {
         $validated = $request->validated();
 
-        // if ($request->hasFile('photo_path')){
-        //     $photoPath = $request->file('photo_path')->store('', 'medicationreminder');
-        //     $validated['photo_path'] = $photoPath;
-        // }
-        //TODO
-
         $medicationreminder = Auth::user()->patient->medicationReminders()->create($validated);
 
         return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
@@ -62,14 +56,22 @@ class MedicationReminderController extends Controller
     //     return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
     // }
 
-    public function update(MedicationReminderUpdateRequest $request,MedicationReminder $medicationreminder)
+    public function update(MedicationReminderUpdateRequest $request, MedicationReminder $medicationreminder)
     {
-        $validated=$request->validated();
-        $id=MedicationReminder::find($medicationreminder->id);
+        $validated = $request->validated();
+        $id = MedicationReminder::find($medicationreminder->id);
         // dd($id);
-        $medicationreminder=$id->update($validated);
+        $medicationreminder = $id->update($validated);
 
         return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
+    }
+
+    public function delete(MedicationReminder $medicationreminder)
+    {
+        $medReminder = MedicationReminder::find($medicationreminder->id);
+        $medReminder->delete();
+
+        return $this->return_api(true, Response::HTTP_ACCEPTED, null, null, null);
 
     }
 }
