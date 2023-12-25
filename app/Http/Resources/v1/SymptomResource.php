@@ -17,7 +17,6 @@ class SymptomResource extends JsonResource
         return [
             'id' => $this->id,
             'name'=>$this->name,
-            'severity'=>$this->severity,
             'description'=>$this->description,
         ];
     }

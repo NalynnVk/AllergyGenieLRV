@@ -24,8 +24,6 @@ class TrackingFactory extends Factory
             'symptom_id' => Symptom::inRandomOrder()->pluck('id')->first(),
             'allergen_id' => Allergen::inRandomOrder()->pluck('id')->first(),
             'notes' => $this->faker->text(),
-            // 'item_ingested' => $this->faker->text(),
-            'severity' => $this->faker->randomDigit(),
         ];
     }
 }
