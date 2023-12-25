@@ -15,6 +15,7 @@ class DependantResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'user'=> new UserResource($this->user),
             // 'medication'=> new MedicationResource($this->medication),
 

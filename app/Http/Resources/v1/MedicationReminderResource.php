@@ -19,6 +19,7 @@ class MedicationReminderResource extends JsonResource
             // 'medication_id'=>$this->medication_id,
 
             //name dari medication
+            'id' => $this->id,
             'medication'=> new MedicationResource($this->medication),
             'dosage' => $this->dosage,
             'time_reminder' => $this->time_reminder,
