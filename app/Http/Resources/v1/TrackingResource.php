@@ -22,7 +22,7 @@ class TrackingResource extends JsonResource
             'allergen'=> new AllergenResource($this->allergen),
             'severity_id'=>$this->severity,
             'severity'=>$this->severity_label,
-            'notes'=>$this->name,
+            'notes'=>$this->notes,
         ];
     }
 }
