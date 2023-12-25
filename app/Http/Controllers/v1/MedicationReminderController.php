@@ -46,7 +46,6 @@ class MedicationReminderController extends Controller
         //     $validated['photo_path'] = $photoPath;
         // }
         //TODO
-        $validated['medication_id'] = $validated['medication']['id'];
 
         $medicationreminder = Auth::user()->patient->medicationReminders()->create($validated);
 

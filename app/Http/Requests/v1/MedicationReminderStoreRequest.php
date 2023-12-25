@@ -26,7 +26,7 @@ class MedicationReminderStoreRequest extends FormRequest
     {
         return [
             // 'medication'=> new MedicationResource($this->medication),
-            'medication.id' => 'required|numeric', //TODO
+            'medication_id' => 'required|numeric', //TODO
             'dosage' => ['required', new EnumRule(DosageEnum::class)],
             'time_reminder' => 'required|string',
             'repititon' => ['required', new EnumRule(ReminderRepetitionEnum::class)],
