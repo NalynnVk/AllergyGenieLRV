@@ -26,11 +26,11 @@ class ProfileUpdateRequest extends FormRequest
         return [
             'name' => 'required|string',
             'date_of_birth' => 'required|string', //date
-            'phone_number' => 'required|string',
+            // 'phone_number' => 'required|string',
             // 'password' => 'required|string',
             // 'profile_photo_path'=>'required|string',
             // 'email' => 'required|string',
-            'registration_status' => ['required', new EnumRule(RegistrationStatusEnum::class)],
+            // 'registration_status' => ['required', new EnumRule(RegistrationStatusEnum::class)],
         ];
     }
 }
