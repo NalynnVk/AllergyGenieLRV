@@ -37,7 +37,7 @@ use Illuminate\Support\Facades\Route;
 //delete adalah untuk delete
 
 Route::post('/login', [AuthController::class, 'login']);
-// Route::post('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'register']);
 
 Route::name('api.')
     ->middleware('auth:sanctum')
