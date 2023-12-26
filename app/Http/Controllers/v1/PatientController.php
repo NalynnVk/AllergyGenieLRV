@@ -38,6 +38,6 @@ class PatientController extends Controller
 
         $data = $user->allergens()->paginate();
 
-        return $this->return_paginated_api(true, Response::HTTP_OK, null, MyAllergicResource::collection($data), null, $this->apiPaginator($data));
+        return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
     }
 }
