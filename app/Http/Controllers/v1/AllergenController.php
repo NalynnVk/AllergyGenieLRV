@@ -16,6 +16,7 @@ class AllergenController extends Controller
 {
     use ApiPaginatorTrait;
 
+    //list of allergen for input form
     public function index()
     {
         $take = request()->get('take', 1000);
@@ -26,12 +27,6 @@ class AllergenController extends Controller
 
         return $this->return_paginated_api(true, Response::HTTP_OK, null, AllergenResource::collection($allergen), null, $this->apiPaginator($allergen));
         //Returning a paginated API response with a success indicator, HTTP status code, insight data, and pagination information.
-    }
-
-    public function show(Allergen $allergen)
-    {
-        $data = Allergen::find($allergen->id);
-        return $this->return_api(true, Response::HTTP_OK, null, new AllergenResource($data), null, null);
     }
 
     public function store(AllergenStoreRequest $request)

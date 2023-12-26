@@ -46,6 +46,8 @@ Route::name('api.')
         // user needed store and update //// PENDING
         Route::get('/me', [AuthController::class, 'me']);
         Route::put('/user/{user}', [AuthController::class, 'update']);
+        Route::get('/patient', [PatientController::class, 'index']);
+        Route::post('/patient/myAllergic', [PatientController::class, 'store']);
 
         // user done
         Route::get('/insight', [InsightController::class, 'index']);
@@ -54,8 +56,6 @@ Route::name('api.')
         // user done without store and update
         Route::get('/allergen', [AllergenController::class, 'index']);
         Route::get('/allergen/{allergen}', [AllergenController::class, 'show']);
-        Route::post('/allergen', [AllergenController::class, 'store']);
-        Route::put('/allergen/{allergen}', [AllergenController::class, 'update']);
 
         // user done
         Route::get('/medication', [MedicationController::class, 'index']);

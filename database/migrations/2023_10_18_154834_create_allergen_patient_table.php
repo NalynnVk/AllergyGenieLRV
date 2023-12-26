@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\SymptomSeverityEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +15,7 @@ return new class extends Migration
         Schema::create('allergen_patient', function (Blueprint $table) {
             $table->foreignId('allergen_id');
             $table->foreignId('patient_id');
-            $table->integer('severity');
+            $table->enum('severity', SymptomSeverityEnum::toValues())->default(SymptomSeverityEnum::Mild());
         });
     }
 

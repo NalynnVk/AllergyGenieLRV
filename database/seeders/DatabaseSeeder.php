@@ -35,10 +35,10 @@ class DatabaseSeeder extends Seeder
             'registration_status' => RegistrationStatusEnum::Approved(),
         ]);
 
+        $this->call(AllergenSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(PatientSeeder::class);
         $this->call(DependantSeeder::class);
-        $this->call(AllergenSeeder::class);
         $this->call(MedicationSeeder::class);
         $this->call(SymptomSeeder::class);
         $this->call(TrackingSeeder::class);
@@ -46,6 +46,5 @@ class DatabaseSeeder extends Seeder
         $this->call(FirstAidStepSeeder::class);
         $this->call(InsightSeeder::class);
         $this->call(MedicationReminderSeeder::class);
-
     }
 }

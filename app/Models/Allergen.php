@@ -12,13 +12,18 @@ class Allergen extends Model
         'name',
     ];
 
-    public function patient()
+    public function patients()
     {
-        return $this->belongsTo(Patient::class);
+        return $this->belongsToMany(Patient::class);
     }
 
     public function symptom()
     {
         return $this->belongsTo(Symptom::class);
+    }
+
+    public function allergenPatients()
+    {
+        return $this->hasMany(AllergenPatient::class);
     }
 }
