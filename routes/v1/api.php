@@ -42,6 +42,9 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::name('api.')
     ->middleware('auth:sanctum')
     ->group(function () {
+
+        Route::get('/logout', [AuthController::class, 'logout']);
+
         // this use for display profile
         // user needed store and update //// PENDING
         Route::get('/me', [AuthController::class, 'me']);
