@@ -23,8 +23,7 @@ class MyAllergicResource extends JsonResource
             ->first();
 
         return [
-            'allergen_id' =>  $filteredData->allergen_id,
-            'allergen' =>  $filteredData->allergen->name,
+            'allergen' =>  new AllergenResource($filteredData->allergen),
             'severity_id' => $filteredData->severity,
             'severity' => $filteredData->severity_label,
         ];
