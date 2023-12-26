@@ -30,13 +30,12 @@ class PatientController extends Controller
 
         $user = auth()->user()->patient;
         $validated = $request->validated();
+
         $data = AllergenPatient::create([
             'patient_id' => $user->id,
             'allergen_id' => $validated['allergen_id'],
             'severity' => $validated['severity'],
         ]);
-
-        $data = $user->allergens()->paginate();
 
         return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
     }

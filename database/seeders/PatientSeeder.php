@@ -17,11 +17,7 @@ class PatientSeeder extends Seeder
      */
     public function run(): void
     {
-        Patient::factory(5)->create()->each(function ($patient) {
-            AllergenPatient::factory(3, [
-                'patient_id' => $patient->id
-            ])->create();
-        });
+        Patient::factory(5)->create();
 
         $user = User::factory()->has(
             Patient::factory(1),
@@ -32,10 +28,6 @@ class PatientSeeder extends Seeder
             'phone_number' => '0123456789',
             'password' => 'password',
             'registration_status' => RegistrationStatusEnum::Approved(),
-        ])->each(function ($patient) {
-            AllergenPatient::factory(3, [
-                'patient_id' => $patient->id
-            ])->create();
-        });
+        ]);
     }
 }

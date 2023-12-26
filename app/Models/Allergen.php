@@ -19,7 +19,7 @@ class Allergen extends Model
 
     public function symptom()
     {
-        return $this->belongsTo(Symptom::class);
+        return $this->belongsToMany(Symptom::class);
     }
 
     public function allergenPatients()

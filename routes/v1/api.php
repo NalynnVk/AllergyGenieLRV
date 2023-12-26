@@ -5,6 +5,7 @@ use App\Http\Controllers\v1\AuthController;
 use App\Http\Controllers\v1\DependantController;
 use App\Http\Controllers\v1\EmergencyContactController;
 use App\Http\Controllers\v1\FirstAidStepController;
+use App\Http\Controllers\v1\GenerateCarePlanController;
 use App\Http\Controllers\v1\InsightController;
 use App\Http\Controllers\v1\MedicationController;
 use App\Http\Controllers\v1\MedicationReminderController;
@@ -42,6 +43,8 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::name('api.')
     ->middleware('auth:sanctum')
     ->group(function () {
+
+        Route::get('/generate-pdf', [GenerateCarePlanController::class, 'generatePDF']);
 
         Route::get('/logout', [AuthController::class, 'logout']);
 
