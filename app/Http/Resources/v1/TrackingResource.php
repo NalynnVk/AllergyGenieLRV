@@ -21,6 +21,7 @@ class TrackingResource extends JsonResource
             'allergen'=> new AllergenResource($this->allergen),
             'severity'=>$this->severity,
             'notes'=>$this->name,
+            'created_at' => $this->created_at->toDateTimeString()
         ];
     }
 }
