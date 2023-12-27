@@ -15,13 +15,14 @@ class TrackingResource extends JsonResource
     public function toArray(Request $request): array
     {
         return
-        [
-            //symptom(name), allergen(name), symptom(severity_label), symptom(notes)
-            'symptom'=> new SymptomResource($this->symptom),
-            'allergen'=> new AllergenResource($this->allergen),
-            'severity'=>$this->severity,
-            'notes'=>$this->name,
-            'created_at' => $this->created_at->toDateTimeString()
-        ];
+            [
+                //symptom(name), allergen(name), symptom(severity_label), symptom(notes)
+                'symptom' => new SymptomResource($this->symptom),
+                'allergen' => new AllergenResource($this->allergen),
+                'severity_id' => $this->severity,
+                'severity' => $this->severity_label,
+                'notes' => $this->name,
+                'created_at' => $this->created_at->toDateTimeString()
+            ];
     }
 }
