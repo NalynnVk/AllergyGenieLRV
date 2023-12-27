@@ -23,6 +23,7 @@ class TrackingResource extends JsonResource
             'severity_id'=>$this->severity,
             'severity'=>$this->severity_label,
             'notes'=>$this->notes,
+            
         ];
     }
 }
