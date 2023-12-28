@@ -10,7 +10,7 @@ class StatsOverview extends BaseWidget
     protected function getCards(): array
     {
         return [
-            Card::make('User', \App\Models\User::whereDate('created_at', today())->count()),
+            Card::make('User', \App\Models\User::whereDate('created_at', today()->toDateString())->count()),
         ];
     }
 }
