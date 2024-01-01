@@ -12,7 +12,12 @@ class Symptom extends Model
 
     protected $fillable = [
         'name',
+        'severity',
         'description',
+    ];
+
+    protected $casts = [
+        'severity' => SymptomSeverityEnum::class,
     ];
 
     public function tracking()

@@ -23,7 +23,8 @@ class TrackingResource extends JsonResource
                 'severity_id' => $this->severity,
                 'severity' => $this->severity_label,
                 'notes' => $this->notes,
-                'created_at' => $this->created_at->toDateTimeString()
+                'created_at' => $this->created_at->toDateTimeString(),
+                'created_at_formatted' => $this->created_at->format('Y-m-d H:i:s'),
             ];
     }
 }

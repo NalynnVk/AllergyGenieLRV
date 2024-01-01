@@ -2,8 +2,10 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\SymptomSeverityEnum;
 use App\Filament\Resources\TrackingResource\Pages;
 use App\Filament\Resources\TrackingResource\RelationManagers;
+use App\Helpers\EnumMap;
 use App\Models\Allergen;
 use App\Models\Patient;
 use App\Models\Symptom;
@@ -18,8 +20,10 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
+use Spatie\Enum\Laravel\Rules\EnumRule;
 
 class TrackingResource extends Resource
 {
@@ -74,8 +78,13 @@ class TrackingResource extends Resource
                     ])
                     ->required(),
 
-                TextInput::make('severity')
-                    ->placeholder('e.g., 2'),
+                Select::make('severity')
+                    ->options(EnumMap::getSymptomSeverity())
+                    ->rules([
+                        new EnumRule(SymptomSeverityEnum::class)
+                    ])
+                    ->disablePlaceholderSelection()
+                    ->reactive(),
 
                 Textarea::make('notes')
                     ->placeholder('e.g., Rashes under eye')
@@ -98,9 +107,13 @@ class TrackingResource extends Resource
                 TextColumn::make('allergen.name')
                     ->label('Allergen Type')
                     ->searchable(),
-                TextColumn::make('severity')
-                    ->label('Severity (0 - 10)')
-                    ->searchable(),
+                BadgeColumn::make('severity_label')
+                    ->colors([
+                        'primary' => SymptomSeverityEnum::Mild()->label,
+                        'primary' => SymptomSeverityEnum::Severe()->label,
+                    ])
+                    ->label('Severity'),
+                // ->searchable(),
                 TextColumn::make('notes')->limit(25)
                     ->label('Additional Notes')
                     ->searchable(),
