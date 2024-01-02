@@ -8,7 +8,7 @@ use Filament\Widgets\BarChartWidget;
 
 class SymptomChart extends BarChartWidget
 {
-    protected static ?string $maxHeight = '2000px';
+    // protected static ?string $maxHeight = '2000px';
 
     protected function getHeading(): string
     {
@@ -20,8 +20,8 @@ class SymptomChart extends BarChartWidget
         $symptoms = Symptom::all();
 
         $colorPalette = [
-            '#FF5733', '#33FF57', '#5733FF', '#FF33A1', '#33B8FF',
-            '#FFD233', '#33FFE2', '#A133FF', '#6B33FF', '#FF3333',
+            '#FF5733', '#FFD133', '#A1FF33', '#33FF57', '#33B8FF',
+            '#5733FF', '#A133FF', '#FF33A1', '#6B33FF', '#FF3333',
         ];
 
         $datasets = [];
@@ -45,4 +45,16 @@ class SymptomChart extends BarChartWidget
             'labels' => ['Symptoms'],
         ];
     }
+
+    // protected function setOptions(): array
+    // {
+    //     // Set inline styles for the chart container
+    //     return [
+    //         'style' => [
+    //             'height' => '300px', // Adjust the height as needed
+    //             'width' => '100%',   // Adjust the width as needed
+    //         ],
+    //     ];
+    // }
 }
+

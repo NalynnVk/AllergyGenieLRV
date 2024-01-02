@@ -24,7 +24,7 @@ class PatientResource extends Resource
 
     public static function getPluralModelLabel(): string
     {
-        return __("Patient Info");
+        return __("User Info");
     }
 
     protected static ?string $navigationIcon = 'heroicon-o-user';
@@ -45,7 +45,7 @@ class PatientResource extends Resource
                 TextColumn::make('id')
                     ->searchable(),
                 TextColumn::make('user.name')
-                    ->label('Patient Name')
+                    ->label('User Name')
                     ->searchable(),
                 TextColumn::make('user.date_of_birth')
                     ->label('Date Of Birth')

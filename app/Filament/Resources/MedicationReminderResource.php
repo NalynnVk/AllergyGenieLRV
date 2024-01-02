@@ -25,6 +25,8 @@ use Filament\Tables\Filters\Filter;
 
 class MedicationReminderResource extends Resource
 {
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static ?string $model = MedicationReminder::class;
 
     protected static ?string $navigationGroup = "User Information";

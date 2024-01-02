@@ -26,6 +26,8 @@ use Filament\Tables\Filters\Filter;
 
 class DependantResource extends Resource
 {
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static ?string $model = Dependant::class;
 
     protected static ?string $navigationGroup = "User Information";
