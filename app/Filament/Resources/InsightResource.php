@@ -13,7 +13,7 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\TextArea;
+// use Filament\Forms\Components\TextArea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Filters\Filter;
@@ -55,7 +55,7 @@ class InsightResource extends Resource
                 TextInput::make('title')
                     ->placeholder('e.g., Allergic Management Treatment'),
 
-                TextArea::make('description')
+                TextInput::make('description')
 
                     ->placeholder('e.g., Allergic management treatment involves a combination of approaches aimed at reducing exposure to allergens, managing symptoms, and modifying the immune systems response to allergens.'),
             ]);
