@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enums\RegistrationStatusEnum;
+use App\Models\AllergenPatient;
 use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;

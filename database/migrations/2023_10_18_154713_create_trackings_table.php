@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\SymptomSeverityEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('allergen_id');
             // $table->string('item_ingested');
             $table->unsignedBigInteger('symptom_id');
-            $table->integer('severity');
+            $table->enum('severity', SymptomSeverityEnum::toValues())->default(SymptomSeverityEnum::Mild());
             $table->text('notes');
             $table->timestamps();
         });

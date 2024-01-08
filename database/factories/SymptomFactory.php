@@ -19,9 +19,6 @@ class SymptomFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            // 'description' => $this->faker->text(),
-            // 'tracking_id' => Tracking::inRandomOrder()->pluck('id')->first(),
-            // 'severity' => $this->faker->randomDigit()
         ];
     }
 }

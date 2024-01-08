@@ -12,9 +12,8 @@ class Symptom extends Model
 
     protected $fillable = [
         'name',
-        'description',
         'severity',
-        // 'tracking_id',
+        'description',
     ];
 
     protected $casts = [

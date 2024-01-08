@@ -5,6 +5,7 @@ use App\Http\Controllers\v1\AuthController;
 use App\Http\Controllers\v1\DependantController;
 use App\Http\Controllers\v1\EmergencyContactController;
 use App\Http\Controllers\v1\FirstAidStepController;
+use App\Http\Controllers\v1\GenerateCarePlanController;
 use App\Http\Controllers\v1\InsightController;
 use App\Http\Controllers\v1\MedicationController;
 use App\Http\Controllers\v1\MedicationReminderController;
@@ -37,15 +38,22 @@ use Illuminate\Support\Facades\Route;
 //delete adalah untuk delete
 
 Route::post('/login', [AuthController::class, 'login']);
-// Route::post('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'register']);
 
 Route::name('api.')
     ->middleware('auth:sanctum')
     ->group(function () {
+
+        Route::get('/generate-pdf', [GenerateCarePlanController::class, 'generatePDF']);
+
+        Route::get('/logout', [AuthController::class, 'logout']);
+
         // this use for display profile
         // user needed store and update //// PENDING
         Route::get('/me', [AuthController::class, 'me']);
         Route::put('/user/{user}', [AuthController::class, 'update']);
+        Route::get('/patient', [PatientController::class, 'index']);
+        Route::post('/patient/myAllergic', [PatientController::class, 'store']);
 
         // user done
         Route::get('/insight', [InsightController::class, 'index']);
@@ -54,8 +62,6 @@ Route::name('api.')
         // user done without store and update
         Route::get('/allergen', [AllergenController::class, 'index']);
         Route::get('/allergen/{allergen}', [AllergenController::class, 'show']);
-        Route::post('/allergen', [AllergenController::class, 'store']);
-        Route::put('/allergen/{allergen}', [AllergenController::class, 'update']);
 
         // user done
         Route::get('/medication', [MedicationController::class, 'index']);
@@ -74,6 +80,7 @@ Route::name('api.')
         Route::get('/medicationreminder', [MedicationReminderController::class, 'index']);
         Route::post('/medicationreminder', [MedicationReminderController::class, 'store']);
         Route::put('/medicationreminder/{medicationreminder}', [MedicationReminderController::class, 'update']);
+        Route::delete('/medicationreminder/{medicationreminder}', [MedicationReminderController::class, 'delete']);
 
         // user needed store and update //// FAIL
         Route::get('/emergencycontact', [EmergencyContactController::class, 'index']);

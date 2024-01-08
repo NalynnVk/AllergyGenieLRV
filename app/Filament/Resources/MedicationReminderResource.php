@@ -25,6 +25,8 @@ use Filament\Tables\Filters\Filter;
 
 class MedicationReminderResource extends Resource
 {
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static ?string $model = MedicationReminder::class;
 
     protected static ?string $navigationGroup = "User Information";
@@ -109,8 +111,16 @@ class MedicationReminderResource extends Resource
                 BadgeColumn::make('repititon_label')
                     ->colors([
                         'primary' => ReminderRepetitionEnum::Once()->label,
-                        'primary' => ReminderRepetitionEnum::Daily()->label,
-                        'primary' => ReminderRepetitionEnum::Weekly()->label,
+                        'primary' => ReminderRepetitionEnum::Twice()->label,
+                        'primary' => ReminderRepetitionEnum::Three()->label,
+                        'primary' => ReminderRepetitionEnum::Four()->label,
+                        'primary' => ReminderRepetitionEnum::Everyday()->label,
+                        'primary' => ReminderRepetitionEnum::Every()->label,
+                        'primary' => ReminderRepetitionEnum::As()->label,
+                        'primary' => ReminderRepetitionEnum::Before()->label,
+                        'primary' => ReminderRepetitionEnum::After()->label,
+                        'primary' => ReminderRepetitionEnum::Right()->label,
+                        'primary' => ReminderRepetitionEnum::At()->label,
                     ])
                     ->label('Repitition'),
             ])

@@ -16,6 +16,7 @@ class FirstAidStepResource extends JsonResource
     {
         return
         [
+            'id' => $this->id,
             'step'=>$this->step,
         ];
     }

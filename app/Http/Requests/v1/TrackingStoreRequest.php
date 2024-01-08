@@ -34,8 +34,8 @@ class TrackingStoreRequest extends FormRequest
             // 'seed' => 'required|numeric',
             // 'photo_path' => ['file|mimes:png,jpg,jpeg', 'max:1000', 'nullable'],
 
-            'symptom.id' => 'required|numeric',
-            'allergen.id' => 'required|numeric',
+            'symptom_id' => 'required|numeric',
+            'allergen_id' => 'required|numeric',
             'severity' => ['required', new EnumRule(SymptomSeverityEnum::class)],
             'notes' => 'required|string',
         ];

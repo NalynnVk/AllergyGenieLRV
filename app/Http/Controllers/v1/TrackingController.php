@@ -31,13 +31,11 @@ class TrackingController extends Controller
     {
         $take = request()->get('take', 1000);
 
-        $tracking = Tracking::paginate($take);
-
-        //$user = auth()->user();
-        //$data = $user->patient->medications()->paginate($take);
+        $user = auth()->user();
+        $data = $user->patient->trackings()->paginate($take);
 
         // dd($insight);
-        return $this->return_paginated_api(true, Response::HTTP_OK, null, TrackingResource::collection($tracking), null, $this->apiPaginator($tracking));
+        return $this->return_paginated_api(true, Response::HTTP_OK, null, TrackingResource::collection($data), null, $this->apiPaginator($data));
     }
 
     public function show(Tracking $tracking)
@@ -50,18 +48,11 @@ class TrackingController extends Controller
     {
         $validated = $request->validated();
 
-        // if ($request->hasFile('photo_path')){
-        //     $photoPath = $request->file('photo_path')->store('', 'medicationreminder');
-        //     $validated['photo_path'] = $photoPath;
-        // }
+        // // $medicationreminder = Auth::user()->medicationreminders()->create($validated);
+        // $validated['symptom_id'] = $validated['symptom']['id'];
+        // $validated['allergen_id'] = $validated['allergen']['id'];
 
-        // $validated['user_id'] = $validated['users']['id'];
-
-        // $medicationreminder = Auth::user()->medicationreminders()->create($validated);
-        $validated['symptom_id'] = $validated['symptom']['id'];
-        $validated['allergen_id'] = $validated['allergen']['id'];
-
-        $symptom = Auth::user()->patient->trackings()->create($validated);
+        Auth::user()->patient->trackings()->create($validated);
 
         return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
     }

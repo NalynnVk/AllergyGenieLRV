@@ -25,7 +25,7 @@ class MedicationReminderUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'medication.id' => 'required|numeric', //TODO
+            'medication_id' => 'required|numeric', //TODO
             'dosage' => ['required', new EnumRule(DosageEnum::class)],
             'time_reminder' => 'required|string',
             'repititon' => ['required', new EnumRule(ReminderRepetitionEnum::class)],

@@ -15,6 +15,7 @@ class InsightResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'photo_path' => $this->photo_path,
             'title' => $this->title,
             'description' => $this->description,

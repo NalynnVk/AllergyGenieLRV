@@ -5,13 +5,17 @@ namespace App\Http\Controllers\v1;
 use App\Actions\Fortify\PasswordValidationRules;
 use App\Enums\RegistrationStatusEnum;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\v1\PatientStoreRequest;
 use App\Http\Requests\v1\ProfileUpdateRequest;
+use App\Http\Requests\v1\UserStoreRequest;
 use App\Http\Resources\v1\UserResource;
+use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -38,31 +42,11 @@ class AuthController extends Controller
             $userTemp = new User();
             $userTemp->email = $user->email;
 
-            // //check if user is lecturer
-            // if ($user->hasRole('lecturer')) {
+            // Create access token
+            $user->accessToken = $user->createToken('auth-token')->plainTextToken;
 
-            // If user email already verified
-            // if ($user->hasVerifiedEmail()) {
-            // Already approve by admin
-            if ($user->registration_status  == (string) RegistrationStatusEnum::Approved()) {
-                // Create access token
-                $user->accessToken = $user->createToken('auth-token')->plainTextToken;
-
-                // Return response with user resource model
-                return $this->return_api(true, Response::HTTP_OK, null, new UserResource($user), null);
-            } else if ($user->registration_status == (string) RegistrationStatusEnum::Rejected()) {
-                return $this->return_api(false, Response::HTTP_UNAUTHORIZED, __("Your account registration has been rejected, please contact the admin."), $userTemp, null);
-            } else {
-                return $this->return_api(false, Response::HTTP_UNAUTHORIZED, __("Your account registration has not yet been approved."), $userTemp, null);
-            }
-            // } else {
-            //     // Email not verified
-            //     return $this->return_api(false, Response::HTTP_FORBIDDEN, trans("auth.email_not_verified"), $userTemp, null);
-            // }
-            // } else {
-
-            //     return $this->return_api(false, Response::HTTP_UNAUTHORIZED, "Unauthorized. Please Contact Admin.", null, null);
-            // }
+            // Return response with user resource model
+            return $this->return_api(true, Response::HTTP_OK, null, new UserResource($user), null);
         }
         return $this->return_api(false, Response::HTTP_UNAUTHORIZED, trans("auth.failed"), null, null);
     }
@@ -85,14 +69,30 @@ class AuthController extends Controller
         }
     }
 
-    //UPDATE
-    public function update(ProfileUpdateRequest $request,User $user)
+    public function register(UserStoreRequest $request)
     {
-        $validated=$request->validated();
-        $id=User::find($user->id);
-        // dd($id);
-        $user=$id->update($validated);
-        return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
+        $validated = $request->validated();
+        $validated['password'] = Hash::make($validated['password']);
+        $user = User::create($validated);
+        // $user->assignRole('patient');
 
+        Patient::create([
+            'user_id' => $user->id,
+        ]);
+
+        $user->save();
+
+        return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
+    }
+
+
+    //UPDATE
+    public function update(ProfileUpdateRequest $request, User $user)
+    {
+        $validated = $request->validated();
+        $id = User::find($user->id);
+        // dd($id);
+        $user = $id->update($validated);
+        return $this->return_api(true, Response::HTTP_CREATED, null, null, null);
     }
 }

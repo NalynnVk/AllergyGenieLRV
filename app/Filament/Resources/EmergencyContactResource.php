@@ -20,6 +20,8 @@ use Filament\Tables\Filters\Filter;
 
 class EmergencyContactResource extends Resource
 {
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static ?string $model = EmergencyContact::class;
 
     protected static ?string $navigationGroup = "Care Plan Information";

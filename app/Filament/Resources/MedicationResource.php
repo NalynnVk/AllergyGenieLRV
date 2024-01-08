@@ -56,7 +56,6 @@ class MedicationResource extends Resource
                 // ->relationship('user', 'name')
                 // ->searchable()
                 // ->placeholder('Parent / Guardian'),
-
             ]);
     }
 
