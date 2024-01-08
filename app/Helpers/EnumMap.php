@@ -39,8 +39,16 @@ class EnumMap{
     public static function getRepititon(){
         return [
             ReminderRepetitionEnum::Once()->value => ReminderRepetitionEnum::Once()->label,
-            ReminderRepetitionEnum::Daily()->value => ReminderRepetitionEnum::Daily()->label,
-            ReminderRepetitionEnum::Weekly()->value => ReminderRepetitionEnum::Weekly()->label,
+            ReminderRepetitionEnum::Twice()->value => ReminderRepetitionEnum::Twice()->label,
+            ReminderRepetitionEnum::Three()->value => ReminderRepetitionEnum::Three()->label,
+            ReminderRepetitionEnum::Four()->value => ReminderRepetitionEnum::Four()->label,
+            ReminderRepetitionEnum::Everyday()->value => ReminderRepetitionEnum::Everyday()->label,
+            ReminderRepetitionEnum::Every()->value => ReminderRepetitionEnum::Every()->label,
+            ReminderRepetitionEnum::As()->value => ReminderRepetitionEnum::As()->label,
+            ReminderRepetitionEnum::Before()->value => ReminderRepetitionEnum::Before()->label,
+            ReminderRepetitionEnum::After()->value => ReminderRepetitionEnum::After()->label,
+            ReminderRepetitionEnum::Right()->value => ReminderRepetitionEnum::Right()->label,
+            ReminderRepetitionEnum::At()->value => ReminderRepetitionEnum::At()->label,
         ];
     }
 }
