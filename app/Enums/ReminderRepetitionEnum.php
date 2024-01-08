@@ -5,8 +5,16 @@ namespace App\Enums;
 use Spatie\Enum\Laravel\Enum;
 /**
  * @method static self Once()
- * @method static self Daily()
- * @method static self Weekly()
+ * @method static self Twice()
+ * @method static self Three()
+ * @method static self Four()
+ * @method static self Everyday()
+ * @method static self Every()
+ * @method static self As()
+ * @method static self Before()
+ * @method static self After()
+ * @method static self Right()
+ * @method static self At()
  */
 
 final class ReminderRepetitionEnum extends Enum
