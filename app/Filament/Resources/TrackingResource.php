@@ -86,7 +86,7 @@ class TrackingResource extends Resource
                     ->disablePlaceholderSelection()
                     ->reactive(),
 
-                Textarea::make('notes')
+                TextInput::make('notes')
                     ->placeholder('e.g., Rashes under eye')
                     ->label('Additional Notes'),
             ]);

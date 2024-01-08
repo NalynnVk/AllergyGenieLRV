@@ -15,8 +15,8 @@ class Tracking extends Model
         'symptom_id',
         'allergen_id',
         // 'item_ingested',
-        // 'severity',
-        // 'notes',
+        'severity',
+        'notes',
     ];
 
     protected $casts = [

@@ -34,7 +34,7 @@ class FirstAidStepResource extends Resource
     {
         return $form
             ->schema([
-                Textarea::make('step')
+                TextInput::make('step')
                     ->placeholder('e.g., If symptoms persist or worsen, consult a healthcare professional.'),
             ]);
     }
