@@ -15,6 +15,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self After()
  * @method static self Right()
  * @method static self At()
+
  */
 
 final class ReminderRepetitionEnum extends Enum
@@ -42,7 +43,6 @@ final class ReminderRepetitionEnum extends Enum
             'Twice' => __('Twice daily'),
             'Three' => __('Three times daily'),
             'Four' => __('Four times daily'),
-            'Everyday' => __('Everyday'),
             'Every' => __('Every other day'),
             'As' => __('As needed'),
             'Before' => __('Before meals'),

@@ -23,6 +23,7 @@ class EnumMap{
     public static function getSymptomSeverity(){
         return [
             SymptomSeverityEnum::Mild()->value => SymptomSeverityEnum::Mild()->label,
+            SymptomSeverityEnum::Moderate()->value => SymptomSeverityEnum::Moderate()->label,
             SymptomSeverityEnum::Severe()->value => SymptomSeverityEnum::Severe()->label,
         ];
     }
@@ -32,6 +33,9 @@ class EnumMap{
             DosageEnum::Half()->value => DosageEnum::Half()->label,
             DosageEnum::One()->value => DosageEnum::One()->label,
             DosageEnum::Two()->value => DosageEnum::Two()->label,
+            DosageEnum::Three()->value => DosageEnum::Three()->label,
+            DosageEnum::Four()->value => DosageEnum::Four()->label,
+            DosageEnum::Five()->value => DosageEnum::Five()->label,
             DosageEnum::More()->value => DosageEnum::More()->label,
         ];
     }
