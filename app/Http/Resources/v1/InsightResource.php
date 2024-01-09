@@ -4,6 +4,7 @@ namespace App\Http\Resources\v1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class InsightResource extends JsonResource
 {
@@ -16,7 +17,7 @@ class InsightResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'photo_path' => $this->photo_path,
+            'photo_path' => Storage::disk('public')->url($this->photo_path),
             'title' => $this->title,
             'description' => $this->description,
         ];
