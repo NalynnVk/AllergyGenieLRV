@@ -20,11 +20,16 @@ class PatientResource extends Resource
 {
     protected static ?string $model = Patient::class;
 
+    public static function shouldRegisterNavigation():bool
+    {
+        return false;
+    }
+
     protected static ?string $navigationGroup = "User Information";
 
     public static function getPluralModelLabel(): string
     {
-        return __("User Info");
+        return __("Patient Info");
     }
 
     protected static ?string $navigationIcon = 'heroicon-o-user';

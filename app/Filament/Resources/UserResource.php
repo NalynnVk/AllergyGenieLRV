@@ -22,11 +22,6 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    public static function shouldRegisterNavigation():bool
-    {
-        return false;
-    }
-
     protected static ?string $navigationGroup = "User Information";
 
     public static function getPluralModelLabel(): string
