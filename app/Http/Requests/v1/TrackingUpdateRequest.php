@@ -24,8 +24,8 @@ class TrackingUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'symptom.id' => 'required|numeric',
-            'allergen.id' => 'required|numeric',
+            'symptom_id' => 'required|numeric',
+            'allergen_id' => 'required|numeric',
             'severity' => ['required', new EnumRule(SymptomSeverityEnum::class)],
             'notes' => 'required|string',
         ];
