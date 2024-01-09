@@ -36,7 +36,8 @@ class InsightResource extends Resource
         return $form
             ->schema([
                 FileUpload::make('photo_path')
-                    ->visibility('private')
+                    ->visibility('public')
+                    ->disk('public')
                     ->label(__('Insight Photo'))
                     ->required()
                     ->image()
